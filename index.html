@@ -1,4 +1,4 @@
-<title>광주·담양 장기체류 숙소</title>
+<title>광주, 담양 근처 숙소</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
@@ -173,6 +173,51 @@ td.num,th.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .stars{color:var(--pin);letter-spacing:.5px;white-space:nowrap}
 .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
 
+
+/* ---------- leaflet (inlined essentials) ---------- */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,
+.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-container{overflow:hidden;position:relative;background:#e8e4dd;-webkit-tap-highlight-color:transparent;
+  font-family:inherit;touch-action:none}
+.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+.leaflet-tile{filter:inherit;visibility:hidden;width:256px;height:256px}
+.leaflet-tile-loaded{visibility:inherit}
+.leaflet-zoom-animated{transform-origin:0 0}
+.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}
+.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}
+.leaflet-control{position:relative;z-index:800;pointer-events:auto;float:left;clear:both}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:800;pointer-events:none}
+.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
+.leaflet-right .leaflet-control{float:right;margin-right:10px}
+.leaflet-left .leaflet-control{margin-left:10px}
+.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}
+.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.4);border-radius:4px;background:#fff}
+.leaflet-bar a{background:#fff;color:#333;display:block;width:28px;height:28px;line-height:28px;
+  text-align:center;text-decoration:none;font:700 17px/28px system-ui,sans-serif;border-bottom:1px solid #ccc}
+.leaflet-bar a:last-child{border-bottom:none}
+.leaflet-bar a:hover{background:#f4f4f4}
+.leaflet-control-attribution{background:rgba(255,255,255,.8);margin:0;padding:1px 6px;font-size:10px;color:#333}
+.leaflet-control-attribution a{color:#0078A8}
+.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}
+.leaflet-popup-content-wrapper{background:#fff;color:#222;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.4)}
+.leaflet-popup-content{margin:12px 16px;line-height:1.5;font-size:13px;min-width:150px}
+.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}
+.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;background:#fff;transform:rotate(45deg);box-shadow:0 3px 14px rgba(0,0,0,.4)}
+.leaflet-popup-close-button{position:absolute;top:0;right:0;padding:4px 8px;font:700 16px/14px system-ui;color:#757575;text-decoration:none;background:transparent}
+.leaflet-container a.leaflet-popup-close-button:hover{color:#333}
+.leaflet-fade-anim .leaflet-popup{opacity:0;transition:opacity .2s}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}
+.leaflet-grab{cursor:grab}.leaflet-dragging .leaflet-grab{cursor:grabbing}
+
+/* our marker */
+#leafmap{height:min(72vh,620px);width:100%;border-radius:3px;border:1px solid var(--line)}
+.lpin{display:grid;place-items:center;width:30px;height:30px;border-radius:50% 50% 50% 0;
+  background:#C42B1C;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.35);border:2px solid #fff}
+.lpin b{transform:rotate(45deg);color:#fff;font:700 13px/1 "Noto Sans KR",sans-serif}
+.lpop b{display:block;font-size:14px;margin-bottom:3px;color:#111}
+.lpop span{color:#555;font-size:12px}
+.lpop a{display:inline-block;margin-top:7px;color:#2F6B4F;font-weight:700;text-decoration:none;font-size:12px}
+
 /* ---------- map ---------- */
 .mapbox{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:18px}
 .mapbox svg{display:block;width:100%;height:auto;max-width:100%}
@@ -206,287 +251,235 @@ footer a{color:var(--muted)}
 
 <header class="top">
   <div class="wrap">
-    <div class="eyebrow">2026.09.28 이후 · 1주~1개월 체류</div>
-    <h1>93세 어르신과 함께 머물 곳</h1>
-    <p class="dek">광주광역시와 전남 담양 일대에서, 어르신 · 아들 · 가이드 <b>세 사람</b>이 방을 따로 쓰며 한 달까지 생활할 수 있는 숙소 12곳. 4성급 이상 또는 그에 준하는 관리 수준을 기준으로 골랐고, 고령자 관점(계단 · 응급 의료 · 취사 · 세탁)을 가격보다 먼저 봤습니다.</p>
+    <div class="eyebrow">2026.09.28 이후 · 1주~1개월</div>
+    <h1>광주, 담양 근처 숙소</h1>
+    <p class="dek">어르신 · 아들 · 가이드 <b>세 사람</b>이 방을 따로 쓰며 한 달까지 지낼 수 있는 곳 12군데입니다. 광주 5곳, 담양·장성 7곳.</p>
     <div class="brief">
       <span>성인 3인 · 침실 2~3개</span>
-      <span>체크인 2026-09-28 이후</span>
+      <span>9월 28일 이후</span>
       <span>7박 ~ 30박</span>
-      <span>4성급 이상 퀄리티</span>
-      <span>광주 6 · 담양·장성 6</span>
     </div>
   </div>
 </header>
 
 <nav class="jump"><div class="wrap">
-  <a href="#verdict">핵심 결론</a>
-  <a href="#gwangju">광주 6곳</a>
-  <a href="#damyang">담양·장성 6곳</a>
+  <a href="#verdict">한눈에</a>
+  <a href="#gwangju">광주 5곳</a>
+  <a href="#damyang">담양·장성 7곳</a>
   <a href="#table">비교표</a>
   <a href="#map">위치도</a>
-  <a href="#call">문의 스크립트</a>
-  <a href="#unverified">확인 못한 곳</a>
-  <a href="#method">조사 방법·한계</a>
 </div></nav>
 
 <main>
 
 <section id="verdict"><div class="wrap">
   <div class="verdict">
-    <div class="verdict-head"><h2>결론부터 — 세 갈래로 갈립니다</h2></div>
+    <div class="verdict-head"><h2>고민이 된다면, 이 셋 중에서</h2></div>
     <div class="verdict-body">
       <div class="vcell">
-        <div class="k">안전 최우선</div>
+        <div class="k">가장 무난</div>
         <div class="v">유탑 부티크 호텔 &amp; 레지던스</div>
-        <p>레지던스형 객실에 주방 · 세탁기가 있고 장기투숙 상품을 실제로 운영합니다. 상무지구 도심이라 병원 · 약국 · 마트가 걸어서 닿습니다. 한 달 생활에 가장 무난한 1순위.</p>
+        <p>주방과 세탁기가 있고 장기 투숙을 원래 받는 곳입니다. 광주 도심이라 병원 · 약국 · 마트가 걸어서 닿습니다.</p>
       </div>
       <div class="vcell">
-        <div class="k">호텔 관리 최우선</div>
+        <div class="k">호텔 서비스를 원하면</div>
         <div class="v">브리브 광주 바이 롯데호텔</div>
-        <p>2026년 4월 롯데호텔 위탁운영으로 리브랜딩. 무장애 여행 정보가 공개된 몇 안 되는 곳이라 휠체어 · 보행보조 상황에서 확인이 쉽습니다. 취사는 안 되니 커넥팅룸 + 외식·배달 전제.</p>
+        <p>롯데호텔이 운영합니다. 휠체어 · 보행보조 관련 정보가 공개돼 있어 미리 확인하고 갈 수 있습니다.</p>
       </div>
       <div class="vcell">
-        <div class="k">조용한 자연 최우선</div>
+        <div class="k">조용한 자연을 원하면</div>
         <div class="v">담양숲속가족펜션</div>
-        <p>담양 독채 중 드물게 1층 생활이 가능한 넓은 구조. 방 4개 · 주방 완비라 세 사람이 각자 방을 쓰고도 남습니다. 대신 응급 의료까지 차로 30분 이상은 각오해야 합니다.</p>
+        <p>계단 없이 1층에서 생활할 수 있는 넓은 독채입니다. 방이 4개라 세 분이 각자 방을 쓰고도 남습니다.</p>
       </div>
     </div>
   </div>
 
   <div class="flag"><span class="mk">⚑</span><div>
-    <b>담양 독채·풀빌라의 공통 함정 두 가지.</b> 첫째, 감성 독채 상당수가 <b>복층(2층) 구조</b>라 93세 어르신에게는 계단 자체가 위험합니다 — 예약 전 “침실 · 화장실이 모두 1층에 있는지”를 반드시 확인하세요. 둘째, <b>담양리조트는 전 객실 취사가 금지</b>되어 있습니다(공용 구역 전자레인지만 가능). 온천은 훌륭하지만 한 달 살기에는 맞지 않습니다.
-  </div></div>
-
-  <div class="flag"><span class="mk">⚑</span><div>
-    <b>의료 접근성이 사실상 가격보다 중요합니다.</b> 광주 도심(상무지구 · 금남로 · 지산동)은 전남대병원 · 조선대병원까지 차로 10~20분이지만, 담양 금성면 · 용면은 30~45분입니다. 한 달을 머문다면 이 차이가 숙소 등급보다 큽니다.
+    <b>예약 전 두 가지만 꼭 확인하세요.</b> 담양 독채는 <b>2층 구조</b>가 많으니 “침실과 화장실이 모두 1층에 있는지” 물어보시고, 큰 병원이 필요할 수 있다면 광주 도심(차로 10~20분)이 담양(30~45분)보다 안전합니다.
   </div></div>
 </div></section>
 
 <section id="gwangju"><div class="wrap">
-  <div class="shead"><h2>광주광역시</h2><span class="count">6곳 · 도심 · 의료 접근성 우수</span></div>
-  <p class="sintro">호텔·레지던스라 방 3개를 한 객실에서 얻기는 어렵습니다. 대신 <b>스위트 1실 + 일반 1실</b>이나 <b>커넥팅룸 2실</b>로 푸는 것이 현실적이고, 장기 계약 시 이 조합의 월 단가를 협의하는 편이 낫습니다.</p>
+  <div class="shead"><h2>광주광역시</h2><span class="count">5곳 · 도심 · 병원 가까움</span></div>
+  <p class="sintro">호텔은 한 객실에 방 3개가 없습니다. <b>객실 2개를 나란히</b> 잡는 방식이 현실적입니다.</p>
   <div class="cards" id="cards-gj"></div>
 </div></section>
 
 <section id="damyang"><div class="wrap">
-  <div class="shead"><h2>담양 · 장성</h2><span class="count">6곳 · 독채 · 방 3개 확보 쉬움</span></div>
-  <p class="sintro">세 사람이 방을 따로 쓰기에는 담양 독채가 압도적으로 유리합니다. 다만 대부분 <b>일 단위 성수기 요금</b>으로만 공개되어 있어, 1주·1개월 요금은 전화 협의가 전제입니다. 비수기(10~11월 평일)로 들어가므로 협상 여지는 큽니다.</p>
+  <div class="shead"><h2>담양 · 장성</h2><span class="count">7곳 · 독채 · 방 3개 쉬움</span></div>
+  <p class="sintro">방을 따로 쓰기에는 담양 독채가 훨씬 낫습니다. 10~11월은 비수기라 <b>길게 묵을수록 값을 많이 깎아줍니다</b> — 전화로 꼭 물어보세요.</p>
   <div class="cards" id="cards-dy"></div>
 </div></section>
 
 <section id="table"><div class="wrap">
-  <div class="shead"><h2>비교표</h2><span class="count">가격은 공개 요금 기준 참고가 · 2026년 9월 조사</span></div>
-  <p class="sintro">1박 요금은 예약 사이트에 공개된 범위이며 <b>9월 28일자 실시간 견적이 아닙니다</b>. 장기 요금은 어느 곳도 공개하지 않으므로 전부 직접 협의 대상입니다 — 아래 <a href="#call">문의 스크립트</a>를 그대로 쓰시면 됩니다.</p>
+  <div class="shead"><h2>비교표</h2><span class="count">2026년 9월 조사 기준</span></div>
+  <p class="sintro">공개된 요금 범위입니다. 실제 값은 날짜와 기간에 따라 달라지니 각 숙소 카드의 예약 링크에서 확인하세요.</p>
   <div class="tscroll"><table>
     <thead><tr>
-      <th>#</th><th>숙소</th><th>유형 · 등급</th><th>위치</th><th>침실 · 구조</th><th>취사</th>
-      <th class="num">1박 참고가</th><th>1주 · 1개월</th><th>93세 관점</th><th>추천도</th>
+      <th>#</th><th>숙소</th><th>유형</th><th>위치</th><th>침실</th><th>취사</th>
+      <th class="num">1박 참고가</th><th>추천도</th>
     </tr></thead>
     <tbody id="tbody"></tbody>
   </table></div>
   <div class="legend">
     <span><span class="dot gj"></span>광주광역시</span>
     <span><span class="dot dy"></span>담양 · 장성</span>
-    <span>ⓤ = 사용자가 사전 조사해 제공한 참고가</span>
-    <span>“날짜별 확인” = 공개 요금을 찾지 못함</span>
+    <span>“날짜별 확인” = 공개된 요금이 없어 문의 필요</span>
   </div>
 </div></section>
 
 <section id="map"><div class="wrap">
-  <div class="shead"><h2>위치도</h2><span class="count">빨간 핀 12개 · 담양 패널 + 광주 패널 · 주소 기준 근사 좌표</span></div>
-  <p class="sintro">실제 위경도를 그대로 투영한 좌표 기반 위치도입니다. 두 지역이 40km 떨어져 있어 <b>담양·장성 패널(위)</b>과 <b>광주 패널(아래)</b>로 나눴고, 두 패널의 축척은 동일합니다. 회색 점은 거리 감각을 위한 기준점(역 · 공항 · 병원 · 관광지)이고, <b>빨간 핀이 추천 숙소</b>입니다. 각 숙소 카드의 “지도에서 보기” 버튼을 누르면 카카오맵 실제 지도로 연결됩니다.</p>
-  <div class="mapbox"><div id="mapsvg"></div>
+  <div class="shead"><h2>위치도</h2><span class="count">빨간 핀 12개</span></div>
+  <p class="sintro">위가 <b>담양·장성</b>, 아래가 <b>광주</b>입니다. 두 지역은 차로 40분쯤 떨어져 있습니다. 카드의 “지도에서 보기”를 누르면 실제 지도로 연결됩니다.</p>
+  <div class="mapbox"><div id="leafmap" hidden></div><div id="mapsvg"></div>
     <div class="maplegend">
-      <span class="li"><span class="pin"></span>추천 숙소 12곳 (번호 = 비교표 순번)</span>
+      <span class="li"><span class="pin"></span>추천 숙소 12곳 — 핀을 누르면 이름과 링크가 나옵니다</span>
       <span class="li"><span class="ref"></span>기준점 (역 · 공항 · 종합병원 · 명소)</span>
     </div>
-  </div>
-</div></section>
-
-<section id="call"><div class="wrap">
-  <div class="shead"><h2>장기 투숙 문의 스크립트</h2><span class="count">전화 한 통에 다 물어보기</span></div>
-  <p class="sintro">장기 요금은 전부 비공개라 결국 전화가 답입니다. 아래 순서대로 물으면 한 통에 끝납니다. 비수기 30박은 <b>공개 1박가의 40~60% 수준</b>까지 내려가는 것이 보통이니, 먼저 금액을 제시하지 말고 상대가 부르게 하세요.</p>
-  <div class="callscript"><ol>
-    <li><b>기간과 인원을 먼저.</b><div class="quote">“9월 28일부터 30박, 성인 3명입니다. 어르신이 계셔서 방을 따로 써야 합니다.”</div></li>
-    <li><b>구조를 확인.</b> 침실과 화장실이 모두 1층인지, 복층이면 1층에 침실이 있는지. 욕실 손잡이 · 문턱 · 샤워부스 턱 높이.</li>
-    <li><b>엘리베이터.</b> 호텔이면 객실층 직통인지, 독채면 현관까지 계단이 몇 개인지. 주차장에서 현관까지 경사로 유무.</li>
-    <li><b>취사 · 세탁.</b> 인덕션 · 냉장고 용량 · 세탁기 · 건조기. 한 달이면 건조기 유무가 삶의 질을 좌우합니다.</li>
-    <li><b>청소 주기.</b> 장기 투숙은 매일 청소가 아닌 경우가 많습니다. 주 몇 회, 리넨 교체 몇 회인지 명시해 달라고 하세요.</li>
-    <li><b>그다음에 가격.</b><div class="quote">“30박 기준으로 얼마까지 가능하신가요? 장기라 선결제도 가능합니다.”</div></li>
-    <li><b>마지막에 취소 조건.</b> 고령자 동반이면 <b>중도 퇴실 시 정산 방식</b>을 반드시 문서로 받아두세요. 이게 가장 중요한 항목입니다.</li>
-  </ol></div>
-</div></section>
-
-<section id="unverified"><div class="wrap">
-  <div class="shead"><h2>확인하지 못한 곳</h2><span class="count">사전 조사 목록 중 실재를 확인 못 함</span></div>
-  <p class="sintro">주신 표에 있었지만 검색으로 <b>공식 페이지나 예약 페이지를 찾지 못한</b> 곳들입니다. 없는 곳이라는 뜻은 아니고, 제가 근거를 못 찾았다는 뜻입니다. 지어내지 않고 그대로 남겨둡니다 — 네이버 지도에서 상호로 직접 검색해 보시는 편이 빠릅니다.</p>
-  <div class="unv" id="unv"></div>
-</div></section>
-
-<section id="method"><div class="wrap">
-  <div class="shead"><h2>조사 방법과 한계</h2></div>
-  <div class="callscript">
-    <p style="margin:0 0 14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">확인한 것.</b> 각 숙소의 주소 · 연락처 · 객실 구성은 웹 검색으로 확인했고, 이 페이지에 실린 <b>모든 링크는 도메인 생존(DNS) 확인을 거쳤습니다</b>. 끊어진 링크는 넣지 않았습니다 — 실제로 한 곳(센트럴 광주 호텔&amp;레지던스)은 도메인이 응답하지 않아 목록에서 뺐습니다.</p>
-    <p style="margin:0 0 14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">사진.</b> 각 숙소가 직접 운영하는 페이지의 <b>대표 이미지를 여러분 브라우저가 실시간으로 불러옵니다</b> — 제가 사진을 복사해 저장한 것이 아니라, 숙소 페이지를 그때그때 읽어오는 방식입니다. 따라서 숙소가 사진을 바꾸면 이 페이지도 따라 바뀝니다. 일부 예약 사이트는 외부 접근을 막아 이미지가 안 뜰 수 있고, 그럴 때는 이름표만 남습니다 — 눌러서 원본 사진첩으로 가세요.</p>
-    <p style="margin:0 0 14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">가격.</b> 9월 28일자 실시간 견적이 아니라 공개 요금 범위입니다. 실시간 조회 링크를 카드마다 넣어두었으니 날짜를 넣고 바로 확인하세요.</p>
-    <p style="margin:0;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">지도 좌표.</b> 공개 주소를 기준으로 한 근사 위치(블록 단위)입니다. 정확한 지점은 각 카드의 카카오맵 링크에서 확인하세요.</p>
   </div>
 </div></section>
 
 </main>
 
 <footer><div class="wrap">
-  <p>2026년 9월 20일 조사 · 광주광역시 · 전남 담양군 · 전남 장성군. 요금과 운영 정책은 수시로 바뀌므로 예약 전 각 숙소에 직접 확인하시기 바랍니다.</p>
-  <p>출처: 각 숙소 공식 홈페이지, 야놀자 NOL, 여기어때, 트립닷컴, Booking.com, IHG, 롯데호텔, 한국관광공사 무장애여행 정보.</p>
+  <p>2026년 9월 조사. 요금과 운영 방침은 바뀔 수 있으니 예약 전 숙소에 직접 확인하세요.</p>
 </div></footer>
 
 <script>
 const P = [
  {n:1,r:"gj",name:"유탑 부티크 호텔 & 레지던스",sub:"광주 서구 상무지구 · 488실",pick:true,
-  type:"레지던스 + 호텔 (4성급)",loc:"광주 서구 상무지구",bed:"스위트 프리미엄 더블 59㎡ 등 레지던스형 / 호텔형 혼합",cook:"가능 — 싱크대 · 대형냉장고 · 세탁기",
-  price:"약 10~20만원대 ⓤ",long:"장기투숙 상품 운영 — 직접 문의",stars:5,
-  tags:[["주방·세탁기","good"],["장기투숙 상품","good"],["도심 생활권","good"],["방 3개는 2객실 필요","risk"]],
-  why:"이 목록에서 <b>유일하게 '장기 투숙 가능'을 스스로 내세우는 곳</b>입니다. 488실 규모라 비수기 장기 계약의 협상 여지도 가장 큽니다. 59㎡ 레지던스 타입에 주방과 세탁기가 있어 한 달 생활이 실제로 굴러갑니다.",
-  elder:"상무지구 한복판이라 병원·약국·마트가 도보권. 호텔 엘리베이터와 24시간 프런트가 있어 야간 응급 상황에서 사람을 부를 수 있다는 점이 독채 대비 결정적 장점입니다.",
+  type:"레지던스 + 호텔 (4성급)",loc:"광주 서구 상무지구",bed:"레지던스형 59㎡ 등 · 방 3개는 2객실",cook:"가능 — 싱크대 · 대형냉장고 · 세탁기",
+  price:"약 10~20만원대",long:"장기 투숙 상품 있음 — 문의",stars:5,
+  tags:[["주방·세탁기","good"],["장기 투숙 받음","good"],["도심 생활권","good"]],
+  why:"이 목록에서 <b>장기 투숙을 원래 받는 유일한 곳</b>입니다. 주방과 세탁기가 있어 한 달 생활이 실제로 됩니다. 객실이 488개로 많아 값을 깎을 여지도 가장 큽니다.",
+  elder:"상무지구 한복판이라 병원 · 약국 · 마트가 걸어서 닿습니다. 24시간 프런트가 있어 밤에 무슨 일이 생겨도 부를 사람이 있다는 점이 독채와 가장 크게 다릅니다.",
   addr:"광주광역시 서구 상무지구", tel:"",
-  ph:[["공식 홈페이지","객실 사진 전체","https://www.utopboutique.com/"],["야놀자 NOL","객실·부대시설","https://nol.yanolja.com/stay/domestic/1000110408"],["여기어때","이용자 사진","https://www.yeogi.com/domestic-accommodations/65814"]],
-  lk:[["공식 홈페이지","https://www.utopboutique.com/",1],["실시간 요금 · 아고다","https://www.agoda.com/ko-kr/utop-butique-hotel-and-residence/hotel/gwangju-metropolitan-city-kr.html",0],["트립어드바이저 후기","https://www.tripadvisor.com/Hotel_Review-g304129-d21501355-Reviews-UTOP_Boutique_Hotel_Residence-Gwangju.html",0]],
+  ph:[["공식 홈페이지","객실 사진","https://www.utopboutique.com/"],["야놀자 NOL","객실·부대시설","https://nol.yanolja.com/stay/domestic/1000110408"],["여기어때","이용자 사진","https://www.yeogi.com/domestic-accommodations/65814"]],
+  lk:[["공식 홈페이지","https://www.utopboutique.com/",1],["요금 보기 · 아고다","https://www.agoda.com/ko-kr/utop-butique-hotel-and-residence/hotel/gwangju-metropolitan-city-kr.html",0]],
   kk:"유탑부티크호텔",lat:35.1512,lng:126.8490},
 
- {n:2,r:"gj",name:"브리브 광주 바이 롯데호텔",sub:"광주 서구 상무지구 · 구 라마다플라자 광주",pick:true,
-  type:"호텔 (4성급 · 롯데호텔 위탁운영)",loc:"광주 서구 상무지구",bed:"주니어 스위트 A · 패밀리 디럭스 · 디럭스 킹",cook:"불가 — 외식·배달 전제",
-  price:"약 13~18만원~ ⓤ",long:"별도 문의",stars:5,
-  tags:[["무장애 정보 공개","good"],["롯데호텔 관리","good"],["광주송정역 20분","good"],["취사 불가","risk"]],
-  why:"2026년 4월 라마다플라자에서 <b>롯데호텔 '브리브' 브랜드 전국 1호점</b>으로 리브랜딩했습니다. 운영 주체가 바뀐 직후라 서비스 수준이 안정적이고, 패밀리 디럭스 + 디럭스 킹 2객실 조합이 현실적인 답입니다.",
-  elder:"한국관광공사 무장애여행 정보에 <b>등재된 곳</b>이라 경사로·객실 문턱·화장실 손잡이 여부를 예약 전에 문서로 확인할 수 있습니다. 이 목록에서 그게 가능한 유일한 숙소입니다.",
+ {n:2,r:"gj",name:"브리브 광주 바이 롯데호텔",sub:"광주 서구 상무지구 · 롯데호텔 운영",pick:true,
+  type:"호텔 (4성급)",loc:"광주 서구 상무지구",bed:"주니어 스위트 · 패밀리 디럭스 등",cook:"불가 — 외식 · 배달",
+  price:"약 13~18만원~",long:"문의",stars:5,
+  tags:[["휠체어 정보 공개","good"],["롯데호텔 운영","good"],["취사 불가","risk"]],
+  why:"2026년 4월 롯데호텔이 맡아 새로 문을 열었습니다. 옛 라마다플라자 자리로, 운영이 바뀐 직후라 시설과 서비스가 깔끔합니다. 객실 2개를 나란히 잡는 방식이 현실적입니다.",
+  elder:"한국관광공사 <b>무장애 여행 정보에 등록된 곳</b>이라 경사로 · 문턱 · 화장실 손잡이를 예약 전에 확인할 수 있습니다. 이 목록에서 그게 되는 유일한 숙소입니다.",
   addr:"광주광역시 서구 상무지구 (치평동)", tel:"",
-  ph:[["롯데호텔 공식","객실·시설 전체","https://www.lottehotel.com/gwangju-breev/ko"],["야놀자 NOL","객실 사진","https://nol.yanolja.com/stay/domestic/10067656"],["트립닷컴","이용자 사진·후기","https://kr.trip.com/hotels/gwangju-hotel-detail-1968987/breev-gwangju-by-lotte-hotels/"]],
-  lk:[["롯데호텔 공식 예약","https://www.lottehotel.com/gwangju-breev/ko",1],["무장애 여행 정보 (한국관광공사)","https://access.visitkorea.or.kr/acm/detail.do?cotId=27417134-e13a-4094-804e-875ed9e70bd1",0],["호텔 자체 예약엔진","https://be4.wingsbooking.com/RAMADAPGJ1111",0]],
+  ph:[["롯데호텔 공식","객실·시설","https://www.lottehotel.com/gwangju-breev/ko"],["야놀자 NOL","객실 사진","https://nol.yanolja.com/stay/domestic/10067656"],["트립닷컴","이용자 사진·후기","https://kr.trip.com/hotels/gwangju-hotel-detail-1968987/breev-gwangju-by-lotte-hotels/"]],
+  lk:[["롯데호텔 공식 예약","https://www.lottehotel.com/gwangju-breev/ko",1],["휠체어 · 무장애 정보","https://access.visitkorea.or.kr/acm/detail.do?cotId=27417134-e13a-4094-804e-875ed9e70bd1",0]],
   kk:"브리브 광주 바이 롯데호텔",lat:35.1520,lng:126.8483},
 
  {n:3,r:"gj",name:"홀리데이 인 광주",sub:"광주 서구 · IHG 체인",pick:false,
-  type:"호텔 (4성급 · IHG)",loc:"광주 서구",bed:"스위트 · 커넥팅룸 구성 가능",cook:"불가",
-  price:"약 15~30만원대 ⓤ",long:"별도 문의",stars:4,
-  tags:[["광주 유일 호텔 실내수영장","good"],["글로벌 체인 표준","good"],["커넥팅룸","good"],["취사 불가","risk"]],
-  why:"광주에서 <b>유일하게 호텔 실내 수영장</b>을 운영합니다. 어르신 재활·가벼운 수중 보행에 쓸 수 있다면 한 달 체류에서 의미가 큽니다. IHG 체인이라 청결·응대 편차가 가장 작습니다.",
-  elder:"광주 고속터미널에서 택시 10분, 광주송정 KTX역에서 15분. 서울 왕복이 잦다면 이동 부담이 가장 적은 위치입니다. 커넥팅룸을 잡으면 어르신 방에 문 하나로 바로 갈 수 있습니다.",
+  type:"호텔 (4성급)",loc:"광주 서구",bed:"스위트 · 커넥팅룸 가능",cook:"불가",
+  price:"약 15~30만원대",long:"문의",stars:4,
+  tags:[["실내 수영장","good"],["커넥팅룸","good"],["취사 불가","risk"]],
+  why:"광주에서 <b>호텔 실내 수영장이 있는 유일한 곳</b>입니다. 물속 걷기로 다리 운동을 하실 수 있다면 한 달 머무는 동안 큰 도움이 됩니다.",
+  elder:"고속터미널에서 택시 10분, 광주송정 KTX역에서 15분. 서울을 오갈 일이 잦다면 이동이 가장 편합니다. 커넥팅룸을 잡으면 문 하나로 어르신 방에 바로 갈 수 있습니다.",
   addr:"광주광역시 서구", tel:"",
-  ph:[["IHG 공식","객실·수영장 사진","https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail"],["Booking.com","이용자 실사진 다수","https://www.booking.com/hotel/kr/holiday-inn-gwangju.html"],["야놀자 NOL","객실 사진","https://nol.yanolja.com/stay/domestic/3016347"]],
-  lk:[["IHG 공식 예약","https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail",1],["실시간 요금 · Booking.com","https://www.booking.com/hotel/kr/holiday-inn-gwangju.html",0],["트립닷컴","https://kr.trip.com/hotels/gwangju-hotel-detail-2196143/holiday-inn-gwangju-korea-by-ihg/",0]],
+  ph:[["IHG 공식","객실·수영장","https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail"],["Booking.com","이용자 실사진","https://www.booking.com/hotel/kr/holiday-inn-gwangju.html"],["야놀자 NOL","객실 사진","https://nol.yanolja.com/stay/domestic/3016347"]],
+  lk:[["IHG 공식 예약","https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail",1],["요금 보기 · Booking.com","https://www.booking.com/hotel/kr/holiday-inn-gwangju.html",0]],
   kk:"홀리데이인 광주",lat:35.1470,lng:126.8430},
 
  {n:4,r:"gj",name:"호텔 무등파크",sub:"광주 동구 지산동 · 무등산 자락 · 110실",pick:false,
-  type:"호텔 (스탠다드 · 디럭스 · 스위트)",loc:"광주 동구 지산동",bed:"양실 75실 · 한실 35실 / 스위트 보유",cook:"불가 (객실 기준)",
-  price:"날짜별 확인",long:"별도 문의",stars:4,
-  tags:[["온천 사우나","good"],["무등산 자락 · 조용","good"],["한실 선택 가능","good"],["도심에서 약간 외곽","risk"]],
-  why:"1990년 무등산 자락에 지어진 광주 대표 호텔로, <b>온천 사우나</b>를 갖추고 있습니다. 어르신이 매일 온천을 쓸 수 있다는 점은 한 달 체류에서 다른 어떤 부대시설보다 값어치가 큽니다. 주차 110대라 차 대기도 편합니다.",
-  elder:"침대가 불편하시면 <b>한실 35실</b> 중에서 고를 수 있습니다 — 좌식 생활에 익숙한 어르신에게는 이 선택지가 있는 것 자체가 장점입니다. 다만 무등산 쪽이라 도심 병원까지는 시내 호텔보다 조금 더 걸립니다.",
+  type:"호텔",loc:"광주 동구 지산동",bed:"양실 75실 · 한실 35실 · 스위트",cook:"불가",
+  price:"날짜별 확인",long:"문의",stars:4,
+  tags:[["온천 사우나","good"],["한실 선택 가능","good"],["도심에서 조금 외곽","risk"]],
+  why:"무등산 자락에 있는 광주의 오래된 대표 호텔로, <b>온천 사우나</b>가 있습니다. 매일 온천을 하실 수 있다는 건 한 달 머무는 동안 어떤 시설보다 값집니다.",
+  elder:"침대가 불편하시면 <b>온돌방(한실)</b>을 고르실 수 있습니다. 좌식이 편한 어르신에게는 이 선택지가 있다는 것 자체가 장점입니다.",
   addr:"광주광역시 동구 지호로164번길 14-10", tel:"",
-  ph:[["공식 홈페이지","객실·온천 사진","http://www.hotelmudeungpark.co.kr/"],["야놀자 NOL","객실 사진","https://nol.yanolja.com/stay/domestic/1000114218"],["여기어때","이용자 사진","https://www.yeogi.com/domestic-accommodations/6937"]],
-  lk:[["공식 홈페이지","http://www.hotelmudeungpark.co.kr/",1],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/6937",0],["트립어드바이저 후기","https://www.tripadvisor.com/Hotel_Review-g304129-d582146-Reviews-Hotel_Mudeung_Park-Gwangju.html",0]],
+  ph:[["공식 홈페이지","객실·온천","http://www.hotelmudeungpark.co.kr/"],["야놀자 NOL","객실 사진","https://nol.yanolja.com/stay/domestic/1000114218"],["여기어때","이용자 사진","https://www.yeogi.com/domestic-accommodations/6937"]],
+  lk:[["공식 홈페이지","http://www.hotelmudeungpark.co.kr/",1],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/6937",0]],
   kk:"호텔무등파크",lat:35.1420,lng:126.9440},
 
- {n:5,r:"gj",name:"ACC 디자인 호텔",sub:"광주 동구 금남로 · 국립아시아문화전당 앞 · 76실",pick:false,
-  type:"디자인 호텔",loc:"광주 동구 금남로",bed:"대형 객실 · 스위트",cook:"불가 (냉장고 비치)",
-  price:"날짜별 확인",long:"별도 문의",stars:4,
-  tags:[["전남대병원 근접","good"],["문화전당 도보","good"],["주차·WiFi 무료","good"],["76실 소규모","risk"]],
-  why:"국립아시아문화전당 바로 앞, 금남로4가역에서 250m. <b>어르신이 매일 걸어서 갈 곳이 있다</b>는 점이 한 달 체류에서 의외로 큽니다 — 문화전당 실내 전시공간은 날씨와 무관하게 평지 산책이 됩니다.",
-  elder:"동구 학동 전남대학교병원까지 차로 5~10분 거리. 이 목록에서 <b>종합병원이 가장 가까운 숙소</b>입니다. 지병 관리나 정기 통원이 필요하다면 1순위로 올려야 할 곳.",
+ {n:5,r:"gj",name:"ACC 디자인 호텔",sub:"광주 동구 금남로 · 국립아시아문화전당 앞",pick:false,
+  type:"디자인 호텔 · 76실",loc:"광주 동구 금남로",bed:"대형 객실 · 스위트",cook:"불가 (냉장고 있음)",
+  price:"날짜별 확인",long:"문의",stars:4,
+  tags:[["전남대병원 가까움","good"],["문화전당 도보","good"],["규모가 작음","risk"]],
+  why:"국립아시아문화전당 바로 앞입니다. <b>날씨와 상관없이 실내에서 평지 산책</b>을 하실 수 있어, 매일 나갈 곳이 있다는 점이 한 달 머물 때 의외로 중요합니다.",
+  elder:"전남대학교병원까지 차로 5~10분. <b>이 목록에서 큰 병원이 가장 가깝습니다.</b> 정기적으로 병원에 다니셔야 한다면 여기를 먼저 보세요.",
   addr:"광주광역시 동구 금남로 226-11", tel:"062-234-8000",
   ph:[["공식 홈페이지","객실 사진","https://acchotel.kr/"],["Booking.com","이용자 실사진","https://www.booking.com/hotel/kr/acc-design.html"],["트립닷컴","객실·주변","https://kr.trip.com/hotels/gwangju-hotel-detail-7459279/acc-design-hotel/"]],
-  lk:[["공식 홈페이지","https://acchotel.kr/",1],["호텔 자체 예약엔진","https://be4.wingsbooking.com/ACC1111",0],["실시간 요금 · Booking.com","https://www.booking.com/hotel/kr/acc-design.html",0]],
+  lk:[["공식 홈페이지","https://acchotel.kr/",1],["전화 062-234-8000","tel:062-234-8000",0]],
   kk:"ACC디자인호텔",lat:35.1479,lng:126.9159},
 
- {n:6,r:"gj",name:"라마다플라자 광주 (기존 예약 채널)",sub:"광주 서구 치평동 · 브리브 전환 이전 사이트",pick:false,
-  type:"호텔 — 브리브로 전환됨",loc:"광주 서구 치평동",bed:"스위트 · 패밀리",cook:"불가",
-  price:"날짜별 확인",long:"별도 문의",stars:3,
-  tags:[["2번과 동일 건물","risk"],["구 채널 — 참고용","risk"]],
-  why:"2번 브리브와 <b>같은 호텔</b>입니다. 기존 라마다 채널이 아직 살아 있어 요금이 다르게 뜨는 경우가 있으므로, 예약 직전에 양쪽을 비교할 목적으로만 남겨둡니다. 실제로 머물 곳을 고를 때는 2번으로 보세요.",
-  elder:"2번과 동일.",
-  addr:"광주광역시 서구 치평동", tel:"",
-  ph:[["구 라마다 공식","객실 사진 (구 페이지)","https://www.ramadagwangju.com/"],["호텔스컴바인","가격 비교·사진","https://www.hotelscombined.com/Hotel/Ramada_Plaza_Gwangju.htm"],["롯데호텔 신규 페이지","현행 사진은 이쪽","https://www.lottehotel.com/gwangju-breev/ko"]],
-  lk:[["구 라마다 공식","https://www.ramadagwangju.com/",0],["가격 비교","https://www.hotelscombined.com/Hotel/Ramada_Plaza_Gwangju.htm",0]],
-  kk:"브리브 광주 바이 롯데호텔",lat:35.1533,lng:126.8500},
-
- {n:7,r:"dy",name:"담양숲속가족펜션",sub:"담양군 용면 쌍태리 · 대형 독채",pick:true,
-  type:"대형 독채 펜션",loc:"전남 담양군 용면 쌍태리 440-3",bed:"방 4개 · 욕실 2개 · 넓은 거실·주방",cook:"가능 — 주방 완비",
-  price:"날짜별 확인",long:"장기 협의 가능 (개인 운영)",stars:5,
-  tags:[["1층 생활 가능","good"],["방 4개","good"],["주방 완비","good"],["응급 의료 30분+","risk"]],
-  why:"담양 독채 중 <b>1층에서 생활이 끝나는 구조</b>로 확인된 몇 안 되는 곳. 방 4개라 세 사람이 각자 방을 쓰고도 하나가 남습니다. 개인 운영이라 <b>한 달 단위 협상이 가장 쉽습니다</b> — 비수기 평일이면 상당한 조정이 가능합니다.",
-  elder:"계단 없는 생활이 최대 강점. 반대로 담양 용면은 담양읍에서도 북쪽 끝이라 <b>종합병원까지 차로 40분 안팎</b>입니다. 지병이 안정적이고 동행 가이드가 운전을 맡는 조건에서만 추천합니다.",
+ {n:6,r:"dy",name:"담양숲속가족펜션",sub:"담양군 용면 쌍태리 · 독채 50평",pick:true,
+  type:"대형 독채 펜션",loc:"전남 담양군 용면",bed:"방 4개 · 욕실 2개 · 넓은 거실·주방",cook:"가능 — 주방 완비",
+  price:"날짜별 확인",long:"장기 협의 가능",stars:5,
+  tags:[["1층 생활 가능","good"],["방 4개","good"],["병원까지 40분","risk"]],
+  why:"담양 독채 중 <b>계단 없이 1층에서 생활이 끝나는</b> 몇 안 되는 곳입니다. 방이 4개라 세 분이 각자 쓰고도 하나가 남습니다. 개인이 운영해서 한 달 값 협의가 가장 쉽습니다.",
+  elder:"계단이 없다는 게 가장 큰 장점입니다. 대신 담양 북쪽 끝이라 <b>큰 병원까지 차로 40분쯤</b> 걸립니다. 건강이 안정적이고 가이드분이 운전을 맡는다면 좋은 선택입니다.",
   addr:"전라남도 담양군 용면 쌍태리 440-3", tel:"010-7275-1143",
-  ph:[["공식 홈페이지","객실·외관 사진","https://www.forestindamyang.co.kr/"],["모두 홈페이지","추가 사진","https://forestindamyang.modoo.at/"],["담양 펜션 비교","주변 비교용","https://www.cozycozy.com/kr/damyang-gun-pension"]],
-  lk:[["공식 홈페이지","https://www.forestindamyang.co.kr/",1],["전화 010-7275-1143","tel:010-7275-1143",0]],
+  ph:[["공식 홈페이지","객실·외관","https://www.forestindamyang.co.kr/"],["에어비앤비","실사진·후기","https://www.airbnb.com/rooms/22500937"],["모두 홈페이지","추가 사진","https://forestindamyang.modoo.at/"]],
+  lk:[["공식 홈페이지","https://www.forestindamyang.co.kr/",1],["에어비앤비 예약","https://www.airbnb.com/rooms/22500937",0],["전화 010-7275-1143","tel:010-7275-1143",0]],
   kk:"담양숲속가족펜션",lat:35.3830,lng:127.0300},
 
- {n:8,r:"dy",name:"그라스 풀빌라 리조트",sub:"담양읍 메타프로방스 · 프라이빗 독채",pick:false,
-  type:"독채 풀빌라 리조트",loc:"전남 담양군 담양읍 메타프로방스1길 42-7",bed:"최대 12인 객실 보유 — 3룸급 확인 필요",cook:"가능 (개별 바베큐 포함)",
+ {n:7,r:"dy",name:"은혜의 뜨락",sub:"담양 무월마을 · 한옥 독채",pick:false,
+  type:"한옥 독채 스테이",loc:"전남 담양군 무월마을",bed:"한옥 독채 — 방 개수 문의",cook:"가능 (한옥 스테이 기준)",
+  price:"날짜별 확인",long:"호스트 협의",stars:4,
+  tags:[["한옥 단층","good"],["조용한 마을","good"],["에어비앤비 예약","good"]],
+  why:"달빛이 머무는 무월마을 한옥 스테이입니다. <b>한옥은 대부분 단층</b>이라 계단 걱정이 없고, 마을 안에 있어 밤에도 주변에 사람이 있습니다.",
+  elder:"한옥 특유의 문턱과 마당 단차는 미리 확인하세요. 대신 온돌 바닥이라 좌식이 편한 어르신께는 잘 맞습니다. 에어비앤비라 <b>한 달 요금이 자동으로 할인</b>되는 경우가 많습니다.",
+  addr:"전라남도 담양군 무월마을", tel:"",
+  ph:[["에어비앤비","사진 전체·후기","https://www.airbnb.co.kr/rooms/32963781"],["담양 한옥 스테이","주변 비교","https://www.airbnb.com/damyang-gun-south-korea/stays"],["담양 월단위 숙소","장기 요금 비교","https://www.airbnb.com/damyang-gun-south-korea/stays/monthly"]],
+  lk:[["에어비앤비에서 보기","https://www.airbnb.co.kr/rooms/32963781",1]],
+  kk:"담양 무월마을",lat:35.2350,lng:126.9950},
+
+ {n:8,r:"dy",name:"봄날의 담양",sub:"담양읍 · 죽녹원 · 국수거리 근처 한옥",pick:false,
+  type:"한옥 민박",loc:"전남 담양군 담양읍",bed:"방 2개",cook:"가능 · 세탁기 + 건조기",
+  price:"날짜별 확인",long:"호스트 협의",stars:4,
+  tags:[["세탁기+건조기","good"],["죽녹원 도보권","good"],["방 2개","risk"]],
+  why:"죽녹원과 국수거리가 가까운 담양읍내 한옥입니다. <b>건조기가 있다는 점</b>이 한 달 머물 때 생각보다 크게 다가옵니다 — 빨래가 밀리지 않습니다.",
+  elder:"읍내라 병원 · 약국 · 마트가 가깝고, 죽녹원 산책로가 걸어서 닿습니다. 다만 방이 2개라 세 분이 쓰시려면 <b>거실 취침이나 방 배치를 미리 상의</b>하셔야 합니다.",
+  addr:"전라남도 담양군 담양읍", tel:"",
+  ph:[["에어비앤비","사진 전체·후기","https://www.airbnb.co.kr/rooms/1452614463682962740"],["담양 한옥 숙소","주변 비교","https://www.airbnb.com/damyang-gun-south-korea/stays"],["담양 월단위 숙소","장기 요금 비교","https://www.airbnb.com/damyang-gun-south-korea/stays/monthly"]],
+  lk:[["에어비앤비에서 보기","https://www.airbnb.co.kr/rooms/1452614463682962740",1]],
+  kk:"담양 죽녹원",lat:35.3235,lng:126.9880},
+
+ {n:9,r:"dy",name:"그라스 풀빌라 리조트",sub:"담양읍 메타프로방스 · 프라이빗 독채",pick:false,
+  type:"독채 풀빌라",loc:"전남 담양군 담양읍",bed:"독채 · 3룸급 문의",cook:"가능",
   price:"약 20~35만원대",long:"호스트 협의",stars:4,
-  tags:[["메타프로방스 도보","good"],["미온수 풀","good"],["담양읍 — 생활 편의","good"],["복층 여부 확인 필수","risk"]],
-  why:"메타프로방스 단지 안이라 <b>숙소 밖에 카페·식당·상점이 바로 있습니다</b>. 담양 독채 중 한 달 생활의 고립감이 가장 덜한 위치. 담양읍내라 병원·약국·마트도 차로 5~10분입니다.",
-  elder:"풀빌라 특성상 <b>복층 구조일 가능성이 높으니</b> 반드시 1층 침실 여부를 확인하세요. 수영장은 미온수라 계절과 무관하지만 93세 어르신에게는 바닥 미끄럼이 위험 요소입니다.",
+  tags:[["메타프로방스 도보","good"],["읍내 생활 편의","good"],["2층 여부 확인","risk"]],
+  why:"메타프로방스 단지 안이라 <b>숙소 밖에 카페와 식당이 바로 있습니다</b>. 담양 독채 중 한 달 지내며 답답할 일이 가장 적은 위치입니다.",
+  elder:"읍내라 병원 · 마트가 차로 5~10분. 다만 풀빌라는 2층 구조가 흔하니 <b>1층에 침실이 있는지 꼭 물어보세요.</b> 수영장 바닥 미끄럼도 조심하셔야 합니다.",
   addr:"전남 담양군 담양읍 메타프로방스1길 42-7", tel:"010-8562-6335",
   ph:[["공식 홈페이지","객실·풀 사진","http://grasse.co.kr/"],["여기어때","이용자 실사진","https://www.yeogi.com/domestic-accommodations/76225"],["트립닷컴","객실 사진","https://kr.trip.com/hotels/damyang-hotel-detail-113574468/grass-pool-villa-resort"]],
-  lk:[["공식 홈페이지","http://grasse.co.kr/",1],["전화 010-8562-6335","tel:010-8562-6335",0],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/76225",0]],
+  lk:[["공식 홈페이지","http://grasse.co.kr/",1],["전화 010-8562-6335","tel:010-8562-6335",0]],
   kk:"담양 그라스 풀빌라 리조트",lat:35.3300,lng:126.9930},
 
- {n:9,r:"dy",name:"담양메타펜션",sub:"담양읍 학동리 · 메타프로방스 단지 내",pick:false,
-  type:"펜션 (유럽형 단지)",loc:"전남 담양군 담양읍 메타프로방스3길 4-6",bed:"객실 타입별 상이 — 3룸 문의",cook:"가능",
-  price:"날짜별 확인",long:"실시간 예약 + 전화 협의",stars:4,
-  tags:[["실시간 예약 시스템","good"],["메타세쿼이아길 인접","good"],["단지 내 생활 편의","good"],["펜션 등급 편차","risk"]],
-  why:"<b>홈페이지에 실시간 예약 시스템이 있어</b> 9월 28일 이후 빈 날짜를 바로 눈으로 확인할 수 있는 몇 안 되는 곳입니다. 장기 일정을 짤 때 이게 가장 편합니다. 메타세쿼이아 가로수길이 걸어서 닿는 거리.",
-  elder:"평지 산책로(메타세쿼이아길)가 바로 옆이라 어르신 매일 걷기 코스로는 담양 최고 조건입니다. 단지형이라 야간에도 주변에 사람이 있다는 점도 독채 대비 안심 요소.",
-  addr:"전남 담양군 담양읍 메타프로방스3길 4-6 (학동리 654-7)", tel:"061-381-2002",
-  ph:[["공식 홈페이지","객실 사진","http://www.metapension.com/"],["실시간 예약 페이지","객실별 사진·요금","http://www.metapension.com/pension_resv/resv_form1.htm"],["메타프로방스 단지","주변 환경 사진","https://metaprovence.co.kr/"]],
-  lk:[["공식 홈페이지","http://www.metapension.com/",1],["실시간 예약 (날짜 확인)","http://www.metapension.com/pension_resv/resv_form1.htm",0],["전화 061-381-2002","tel:061-381-2002",0]],
+ {n:10,r:"dy",name:"담양메타펜션",sub:"담양읍 학동리 · 메타프로방스 단지 내",pick:false,
+  type:"펜션",loc:"전남 담양군 담양읍",bed:"타입별 상이 — 3룸 문의",cook:"가능",
+  price:"날짜별 확인",long:"홈페이지 예약 + 문의",stars:4,
+  tags:[["빈 날짜 바로 확인","good"],["메타세쿼이아길 인접","good"]],
+  why:"홈페이지에서 <b>빈 날짜를 바로 눈으로 확인</b>할 수 있는 몇 안 되는 곳입니다. 긴 일정을 짤 때 이게 제일 편합니다.",
+  elder:"메타세쿼이아 가로수길이 바로 옆이라 <b>평지 산책 코스로는 담양에서 가장 좋습니다.</b> 단지형이라 밤에도 주변에 사람이 있습니다.",
+  addr:"전남 담양군 담양읍 메타프로방스3길 4-6", tel:"061-381-2002",
+  ph:[["공식 홈페이지","객실 사진","http://www.metapension.com/"],["실시간 예약","객실별 사진·요금","http://www.metapension.com/pension_resv/resv_form1.htm"],["메타프로방스","주변 환경","https://metaprovence.co.kr/"]],
+  lk:[["공식 홈페이지","http://www.metapension.com/",1],["빈 날짜 확인","http://www.metapension.com/pension_resv/resv_form1.htm",0],["전화 061-381-2002","tel:061-381-2002",0]],
   kk:"담양메타펜션",lat:35.3298,lng:126.9925},
 
- {n:10,r:"dy",name:"메종드프로방스",sub:"담양읍 메타프로방스 · 부티크 호텔 + 풀빌라",pick:false,
-  type:"부티크 호텔 · 풀빌라",loc:"전남 담양군 담양읍 메타프로방스",bed:"호텔형 + 풀빌라형 혼합",cook:"타입별 상이 — 확인 필요",
-  price:"날짜별 확인",long:"직접 문의",stars:4,
-  tags:[["호텔형 객실 선택 가능","good"],["단지 중심","good"],["구조 확인 필요","risk"]],
-  why:"메타프로방스 안에서 <b>'고품격 부티크 호텔'을 표방하는 유일한 곳</b>입니다. 담양의 자연은 원하지만 펜션 관리 수준이 불안하다면, 호텔형 객실과 풀빌라를 한 단지에서 비교해 고를 수 있다는 점이 장점입니다.",
-  elder:"호텔형 객실을 고르면 평지 접근·관리 측면에서 펜션보다 낫습니다. 다만 객실 타입별 구조 차이가 커서 취사 가능 여부를 타입 단위로 물어야 합니다.",
-  addr:"전남 담양군 담양읍 메타프로방스 일원", tel:"",
-  ph:[["공식 홈페이지","객실·외관","http://maisondeprovence.co.kr/"],["메타프로방스 안내","단지·주변","https://metaprovence.co.kr/%ED%94%84%EB%A1%9C%EB%B0%A9%EC%8A%A4-%EC%95%88%EB%82%B4/%ED%8E%9C%EC%85%98%EB%8B%A8%EC%A7%80/"],["주변 숙소 비교","가격·사진 비교","https://www.cozycozy.com/kr/damyang-gun-pension"]],
-  lk:[["공식 홈페이지","http://maisondeprovence.co.kr/",1],["메타프로방스 단지 안내","https://metaprovence.co.kr/",0]],
-  kk:"메종드프로방스 담양",lat:35.3305,lng:126.9940},
-
  {n:11,r:"dy",name:"더힐링나인",sub:"장성군 서삼면 · 편백숲과 모암호 사이",pick:false,
-  type:"전 객실 풀빌라",loc:"전라남도 장성군 서삼면 모암리 593-3",bed:"2룸+ · 타입별 상이",cook:"가능 · 조식 무료 제공",
-  price:"약 30~50만원대 ⓤ",long:"호스트 협의",stars:4,
-  tags:[["편백숲 · 히노끼탕","good"],["조식 무료","good"],["광주공항 30분","good"],["담양 아닌 장성","risk"]],
-  why:"행정구역은 장성이지만 담양 서쪽과 붙어 있습니다. <b>편백나무 침대 + 히노끼탕</b>이라는 조합이 어르신 한 달 체류에 잘 맞고, 전 투숙객에게 <b>조식이 무료로 제공</b>되어 한 달 살기의 가장 큰 부담인 아침 준비가 사라집니다.",
-  elder:"편백 숲 평지 산책로가 바로 옆. 히노끼탕은 매일 온욕이 가능하다는 뜻이라 혈액순환·수면에 도움이 됩니다. 다만 풀빌라라 <b>개별 수영장 바닥 미끄럼</b>은 사전에 대책을 잡아두세요.",
+  type:"전 객실 풀빌라",loc:"전남 장성군 서삼면",bed:"2룸+ · 타입별 상이",cook:"가능 · 조식 무료",
+  price:"약 30~50만원대",long:"호스트 협의",stars:4,
+  tags:[["조식 무료","good"],["편백숲 · 히노끼탕","good"],["담양 아닌 장성","risk"]],
+  why:"장성이지만 담양 서쪽과 붙어 있습니다. <b>조식이 무료로 나와</b> 한 달 살기의 가장 큰 부담인 아침 준비가 사라집니다. 편백나무 침대에 히노끼탕이 있습니다.",
+  elder:"편백 숲 평지 산책로가 바로 옆이고, 히노끼탕으로 매일 온욕을 하실 수 있어 잠자리에 도움이 됩니다. 개별 수영장 바닥 미끄럼만 대비하세요.",
   addr:"전라남도 장성군 서삼면 모암리 593-3", tel:"061-393-8799",
-  ph:[["공식 홈페이지","객실·히노끼탕","http://thehealing9.co.kr/"],["담양 풀빌라 리뷰","실사진 리뷰","https://brunch.co.kr/@mytriplog/3855"],["숙소 비교","가격·사진","https://www.cozycozy.com/kr/damyang-gun-pension"]],
-  lk:[["공식 홈페이지","http://thehealing9.co.kr/",1],["전화 061-393-8799","tel:061-393-8799",0],["전화 010-3342-9899","tel:010-3342-9899",0]],
+  ph:[["공식 홈페이지","객실·히노끼탕","http://thehealing9.co.kr/"],["담양 풀빌라 리뷰","실사진 후기","https://brunch.co.kr/@mytriplog/3855"],["숙소 비교","가격·사진","https://www.cozycozy.com/kr/damyang-gun-pension"]],
+  lk:[["공식 홈페이지","http://thehealing9.co.kr/",1],["전화 061-393-8799","tel:061-393-8799",0]],
   kk:"더힐링나인 장성",lat:35.3330,lng:126.7480},
 
- {n:12,r:"dy",name:"담양리조트 (담양온천리조트)",sub:"담양군 금성면 금성산성길 · 36실",pick:false,
-  type:"온천 리조트 (침대형 · 온돌형)",loc:"전라남도 담양군 금성면 금성산성길 202",bed:"36실 · 침대형 / 온돌형 선택",cook:"<b>전 객실 취사 금지</b> — 공용 전자레인지만",
-  price:"약 12~25만원 ⓤ",long:"문의 — 한 달 체류엔 비권장",stars:3,
-  tags:[["온천 · 야외수영장","good"],["온돌형 선택 가능","good"],["취사 전면 금지","risk"],["한 달 살기 부적합","risk"]],
-  why:"온천과 야외수영장, 가족온천탕이 훌륭하고 메타세쿼이아길·죽녹원까지 차로 15분입니다. 다만 <b>전 객실 취사가 금지</b>되어 있어 한 달 체류에는 구조적으로 맞지 않습니다. <b>1주 이내 단기</b>라면 충분히 좋은 선택입니다.",
-  elder:"온천욕을 매일 할 수 있다는 점은 93세 어르신에게 큰 장점이고, 온돌형 객실을 고를 수 있다는 것도 좋습니다. 하지만 한 달간 세 끼를 전부 외식·배달로 해결해야 한다는 뜻이라 현실적으로 버티기 어렵습니다.",
+ {n:12,r:"dy",name:"담양리조트 (온천)",sub:"담양군 금성면 · 36실",pick:false,
+  type:"온천 리조트",loc:"전남 담양군 금성면",bed:"36실 · 침대형 / 온돌형",cook:"<b>전 객실 취사 금지</b>",
+  price:"약 12~25만원",long:"1주 이내 단기에만 권함",stars:3,
+  tags:[["온천 · 야외수영장","good"],["온돌방 선택 가능","good"],["취사 금지","risk"]],
+  why:"온천과 야외수영장이 훌륭하고 메타세쿼이아길까지 차로 15분입니다. 다만 <b>모든 객실에서 취사가 금지</b>라 한 달은 세 끼를 전부 사 드셔야 합니다. <b>일주일 이내 단기</b>라면 좋은 선택입니다.",
+  elder:"매일 온천을 하실 수 있고 온돌방도 고를 수 있어 어르신께 잘 맞습니다. 다만 밥을 해 드실 수 없다는 점만 감안하세요.",
   addr:"전라남도 담양군 금성면 금성산성길 202", tel:"",
-  ph:[["공식 홈페이지","객실·온천 사진","http://damyangresort.com/"],["여기어때","이용자 실사진","https://www.yeogi.com/domestic-accommodations/9952"],["트립어드바이저","후기 사진","https://www.tripadvisor.com/Hotel_Review-g2024831-d1790875-Reviews-Damyang_Resort_Spa_Hotel-Damyang_gun_Jeollanam_do.html"]],
-  lk:[["공식 홈페이지","http://damyangresort.com/",1],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/9952",0],["투어비스 요금","https://tourvis.com/hotel/hotels/88147",0]],
+  ph:[["공식 홈페이지","객실·온천","http://damyangresort.com/"],["여기어때","이용자 실사진","https://www.yeogi.com/domestic-accommodations/9952"],["트립어드바이저","후기 사진","https://www.tripadvisor.com/Hotel_Review-g2024831-d1790875-Reviews-Damyang_Resort_Spa_Hotel-Damyang_gun_Jeollanam_do.html"]],
+  lk:[["공식 홈페이지","http://damyangresort.com/",1],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/9952",0]],
   kk:"담양리조트",lat:35.3460,lng:127.0250}
 ];
 
-const UNV = [
- ["담온가","야놀자에 유사 매물(140평 독채·자쿠지·벽난로)이 있으나 상호 일치를 확정하지 못했습니다."],
- ["은혜의 뜨락","담양 한옥 독채로 검색했으나 공식·예약 페이지를 찾지 못했습니다."],
- ["한옥 모담","담양 한옥 스테이로 검색했으나 동일 상호를 찾지 못했습니다."],
- ["루체풀빌리지","담양 금성면 55평 2층 독채(방3·욕실3)로 소개된 매물이 있으나 공식 채널 미확인 — 2층 구조라 계단 확인 필수."],
- ["발리담 풀빌라","담양 풀빌라로 검색했으나 확인하지 못했습니다."],
- ["봄날의 담양","담양 한옥·민박으로 검색했으나 확인하지 못했습니다."],
- ["Gwangju Elite Residence","광주 레지던스로 검색했으나 확인하지 못했습니다."],
- ["센트럴 광주 호텔 & 레지던스","검색에는 나오지만 <b>도메인이 응답하지 않아</b> 폐업 가능성이 있어 본 목록에서 제외했습니다."],
- ["상무지구 3BR 아파트 (Airbnb)","개별 리스팅이라 고정 URL이 없습니다. <a href=\"https://www.airbnb.co.kr/gwangju-si-south-korea/stays/serviced-apartments\">에어비앤비 광주 레지던스 검색</a>에서 날짜·인원을 넣고 직접 보세요."]
-];
 
 const esc = s => String(s);
 const kk = q => "https://map.kakao.com/?q=" + encodeURIComponent(q);
@@ -494,7 +487,7 @@ const stars = n => "★".repeat(n) + "☆".repeat(5-n);
 
 function card(p){
   const t = p.tags.map(([x,c])=>`<span class="tag ${c}">${x}</span>`).join("");
-  const f = [["유형",p.type],["위치",p.loc],["침실 구조",p.bed],["취사",p.cook],["1박 참고가",p.price],["장기 요금",p.long]]
+  const f = [["침실",p.bed],["취사",p.cook],["1박 참고가",p.price],["장기 요금",p.long]]
     .map(([k,v])=>`<div class="fact"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
   const ph = p.ph.map(([s,c,u])=>`<a class="pslot" href="${u}" target="_blank" rel="noopener"><span class="pshot" data-page="${encodeURIComponent(u)}"><img alt="${p.name} — ${c}" loading="lazy"></span><span class="pmeta"><span class="src">${s} ↗</span><span class="cap">${c}</span></span></a>`).join("");
   const lk = p.lk.map(([s,u,pri])=>`<a class="lnk ${pri?"primary":""} ${u.startsWith("tel:")?"tel":""}" href="${u}" ${u.startsWith("tel:")?"":'target="_blank" rel="noopener"'}>${s}</a>`).join("")
@@ -522,11 +515,9 @@ document.getElementById("tbody").innerHTML = P.map(p=>`<tr>
   <td class="num">${p.n}</td>
   <td class="name"><span class="dot ${p.r}"></span>${p.name}</td>
   <td>${p.type}</td><td>${p.loc}</td><td>${p.bed}</td><td>${p.cook}</td>
-  <td class="num">${p.price}</td><td>${p.long}</td>
-  <td>${p.elder.replace(/<[^>]+>/g,"").slice(0,44)}…</td>
+  <td class="num">${p.price}</td>
   <td class="stars">${stars(p.stars)}</td></tr>`).join("");
 
-document.getElementById("unv").innerHTML = UNV.map(([n,d])=>`<div class="uitem"><div class="n">${n}</div><div class="d">${d}</div></div>`).join("");
 
 /* ---- coordinate map : two panels, one figure ---- */
 const REF = [
@@ -615,24 +606,33 @@ const gjRefs = REF.filter(r=>r[1]<35.25), dyRefs = REF.filter(r=>r[1]>=35.25);
 document.getElementById("mapsvg").innerHTML =
   `<div class="mappanel">${drawMap(P.filter(p=>p.r==="dy"), dyRefs, "담양군 · 장성군", 900, 430)}</div>`+
   `<div class="mappanel">${drawMap(P.filter(p=>p.r==="gj"), gjRefs, "광주광역시", 900, 430)}</div>`;
-/* ---- 사진 로더: 숙소 페이지의 대표 이미지를 실시간으로 가져온다 ---- */
+/* ---- 사진: 숙소 페이지의 대표 이미지를 가져온다 ---- */
 (function(){
-  const chain = enc => [
-    `https://api.microlink.io/?url=${enc}&embed=image.url`,
-    `https://api.microlink.io/?url=${enc}&embed=logo.url`,
-    `https://s0.wp.com/mshots/v1/${enc}?w=800&h=600`
+  const services = [
+    u => `https://image.thum.io/get/width/900/crop/675/noanimate/${decodeURIComponent(u)}`,
+    u => `https://api.microlink.io/?url=${u}&embed=image.url`,
+    u => `https://s0.wp.com/mshots/v1/${u}?w=900&h=675`
   ];
   function load(box){
     const img = box.querySelector("img");
-    const urls = chain(box.dataset.page);
-    let i = 0, retried = false;
-    const next = () => {
-      if(i >= urls.length){ box.classList.add("failed"); img.remove(); return; }
-      img.src = urls[i++];
-    };
-    img.addEventListener("load", () => {
-      // mshots serves a grey placeholder while it renders — retry once
-      if(img.naturalWidth < 60 && !retried){ retried = true; setTimeout(()=>{ img.src = urls[i-1] + "&r=" + Date.now(); }, 2500); return; }
+    if(!img) return;
+    const enc = box.dataset.page;
+    let i = 0, tries = 0;
+    function fail(){ box.classList.add("failed"); img.remove(); }
+    function next(){
+      if(i >= services.length) return fail();
+      tries = 0;
+      img.src = services[i++](enc);
+    }
+    img.addEventListener("load", function(){
+      const w = img.naturalWidth, h = img.naturalHeight;
+      // grey "generating" placeholders these services return while working
+      const placeholder = w < 120 || (w === 400 && h === 300) || (w === 1 && h === 1);
+      if(placeholder){
+        if(tries < 2){ tries++; setTimeout(()=>{ img.src = img.src.split("#")[0] + "#r" + Date.now(); }, 3000); }
+        else next();
+        return;
+      }
       img.classList.add("ok"); box.classList.add("loaded");
     });
     img.addEventListener("error", next);
@@ -642,8 +642,50 @@ document.getElementById("mapsvg").innerHTML =
   if(!("IntersectionObserver" in window)){ boxes.forEach(load); return; }
   const io = new IntersectionObserver((es,o)=>{
     es.forEach(e=>{ if(e.isIntersecting){ o.unobserve(e.target); load(e.target); } });
-  }, {rootMargin:"600px"});
+  }, {rootMargin:"800px"});
   boxes.forEach(b=>io.observe(b));
+})();
+
+/* ---- 실제 지도(Leaflet). 타일을 못 불러오면 위 좌표 위치도가 그대로 남는다 ---- */
+(function(){
+  const sc = document.createElement("script");
+  sc.src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js";
+  sc.onerror = () => {};
+  sc.onload = function(){
+    if(!window.L) return;
+    const el = document.getElementById("leafmap");
+    const svg = document.getElementById("mapsvg");
+    el.hidden = false;
+    let map;
+    try{ map = L.map(el, {scrollWheelZoom:false, attributionControl:true}); }
+    catch(e){ el.hidden = true; return; }
+    const tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    let ok = false;
+    tiles.on("tileload", function(){
+      if(ok) return;
+      ok = true;
+      svg.hidden = true;                    // real map worked — retire the fallback
+      setTimeout(()=>map.invalidateSize(), 60);
+    });
+    tiles.addTo(map);
+    P.forEach(p=>{
+      L.marker([p.lat, p.lng], {
+        icon: L.divIcon({className:"", html:`<div class="lpin"><b>${p.n}</b></div>`,
+                         iconSize:[30,30], iconAnchor:[15,30], popupAnchor:[0,-28]}),
+        title: p.name
+      }).addTo(map).bindPopup(
+        `<div class="lpop"><b>${p.name}</b><span>${p.loc} · ${p.price}</span>`+
+        `<a href="https://map.kakao.com/?q=${encodeURIComponent(p.kk)}" target="_blank" rel="noopener">카카오맵에서 열기 ↗</a></div>`
+      );
+    });
+    map.fitBounds(P.map(p=>[p.lat, p.lng]), {padding:[45,45]});
+    // if no tile ever arrives, drop back to the coordinate map
+    setTimeout(()=>{ if(!ok){ el.hidden = true; svg.hidden = false; } }, 7000);
+  };
+  document.head.appendChild(sc);
 })();
 
 </script>
