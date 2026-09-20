@@ -11,7 +11,6 @@ const TARGETS = {
   breev:         ["https://www.lottehotel.com/gwangju-breev/ko/rooms.html",
                   "https://www.lottehotel.com/gwangju-breev/ko"],
   holidayinn:    ["https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail"],
-  mudeungpark:   ["https://www.hotelmudeungpark.co.kr/"],
   acc:           ["http://acchotel.kr/sub.php?code=WGXGbW3J", "https://acchotel.kr/"],
   forest:        ["https://www.forestindamyang.co.kr/", "https://forestindamyang.modoo.at/"],
   eunhye:        ["https://www.airbnb.co.kr/rooms/32963781"],

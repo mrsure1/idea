@@ -8,7 +8,6 @@ const TARGETS = {
   breev: ["https://www.lottehotel.com/gwangju-breev/ko/rooms.html",
           "https://www.lottehotel.com/gwangju-breev/ko"],
   holidayinn: ["https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail"],
-  mudeungpark: ["https://www.hotelmudeungpark.co.kr/"],
   forest: ["https://www.forestindamyang.co.kr/", "https://forestindamyang.modoo.at/"],
   damyangresort: ["http://damyangresort.com/"]
 };

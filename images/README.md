@@ -9,7 +9,6 @@
 | 유탑 부티크 호텔 & 레지던스 | `utop-1.jpg` `utop-2.jpg` `utop-3.jpg` |
 | 브리브 광주 바이 롯데호텔 | `breev-1.jpg` `breev-2.jpg` `breev-3.jpg` |
 | 홀리데이 인 광주 | `holidayinn-1.jpg` … |
-| 호텔 무등파크 | `mudeungpark-1.jpg` … |
 | ACC 디자인 호텔 | `acc-1.jpg` … |
 | 담양숲속가족펜션 | `forest-1.jpg` … |
 | 은혜의 뜨락 | `eunhye-1.jpg` … |
