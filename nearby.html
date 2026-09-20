@@ -1,0 +1,755 @@
+<title>화정동 30분 거리 숙소</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23C42B1C' d='M8 1a5 5 0 0 0-5 5c0 3.5 5 9 5 9s5-5.5 5-9a5 5 0 0 0-5-5z'/%3E%3Ccircle cx='8' cy='6' r='1.9' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#F7F7F4;
+  --surface:#FFFFFF;
+  --surface-2:#EFEFEA;
+  --ink:#1A211C;
+  --ink-2:#414A43;
+  --muted:#6E7770;
+  --line:#DCDDD6;
+  --line-2:#C7C9C0;
+  --accent:#2F6B4F;
+  --accent-soft:#E4EDE7;
+  --pin:#C42B1C;
+  --pin-soft:#F7E4E1;
+  --warn:#9A5B12;
+  --warn-soft:#F6EBDA;
+  --shadow:0 1px 2px rgba(26,33,28,.06),0 6px 20px rgba(26,33,28,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14180F;
+    --surface:#1C211B;
+    --surface-2:#242A23;
+    --ink:#EDEFE9;
+    --ink-2:#C3C9BF;
+    --muted:#8E968B;
+    --line:#333A31;
+    --line-2:#434B40;
+    --accent:#7FBF9B;
+    --accent-soft:#22332A;
+    --pin:#F0705F;
+    --pin-soft:#3A221E;
+    --warn:#D8A05A;
+    --warn-soft:#332715;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14180F; --surface:#1C211B; --surface-2:#242A23;
+  --ink:#EDEFE9; --ink-2:#C3C9BF; --muted:#8E968B;
+  --line:#333A31; --line-2:#434B40;
+  --accent:#7FBF9B; --accent-soft:#22332A;
+  --pin:#F0705F; --pin-soft:#3A221E;
+  --warn:#D8A05A; --warn-soft:#332715;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:0}
+h1,h2,h3{font-family:"Gowun Batang","Noto Sans KR",serif;font-weight:700;text-wrap:balance;margin:0;line-height:1.35}
+a{color:var(--accent)}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+header.top{border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{padding-block:38px 30px}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px}
+h1{font-size:clamp(28px,5.4vw,42px);letter-spacing:-.01em}
+.dek{margin-top:14px;max-width:62ch;color:var(--ink-2);font-size:15.5px}
+.brief{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.brief span{font-size:12.5px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:999px;padding:5px 13px;color:var(--ink-2)}
+
+nav.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--surface);
+  border-bottom:1px solid var(--line)}
+nav.jump .wrap{display:flex;gap:20px;overflow-x:auto;padding-block:11px;font-size:13px;white-space:nowrap;scrollbar-width:thin}
+nav.jump a{color:var(--muted);text-decoration:none;font-weight:500}
+nav.jump a:hover{color:var(--accent)}
+
+section{padding-block:46px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.shead h2{font-size:clamp(20px,3.4vw,26px)}
+.shead .count{font-size:12.5px;color:var(--muted)}
+.sintro{color:var(--ink-2);max-width:68ch;margin:0 0 28px;font-size:14.5px}
+
+/* ---------- verdict ---------- */
+.verdict{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);overflow:hidden}
+.verdict-head{padding:20px 24px;border-bottom:1px solid var(--line);background:var(--accent-soft)}
+.verdict-head h2{font-size:19px}
+.verdict-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.vcell{padding:20px 24px;border-right:1px solid var(--line);border-top:1px solid var(--line)}
+.vcell:last-child{border-right:0}
+.vcell .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.vcell .v{font-family:"Gowun Batang",serif;font-size:19px;font-weight:700;margin:6px 0 7px;line-height:1.3}
+.vcell p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.65}
+
+.flag{display:flex;gap:12px;align-items:flex-start;margin-top:22px;padding:15px 18px;border-radius:4px;
+  background:var(--warn-soft);border:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
+.flag b{color:var(--ink);font-weight:700}
+.flag .mk{color:var(--warn);font-weight:700;flex:none}
+
+/* ---------- cards ---------- */
+.cards{display:flex;flex-direction:column;gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);overflow:hidden}
+.card.pick{border-color:var(--accent);border-width:1.5px}
+.chead{display:flex;gap:16px;align-items:flex-start;padding:18px 22px;border-bottom:1px solid var(--line)}
+.rank{flex:none;width:34px;height:34px;border-radius:50%;background:var(--pin);color:#fff;
+  display:grid;place-items:center;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:2px}
+.ctitle{flex:1;min-width:0}
+.ctitle h3{font-size:19px}
+.ctitle .sub{font-size:12.5px;color:var(--muted);margin-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.tag{font-size:11.5px;padding:2px 9px;border-radius:3px;border:1px solid var(--line-2);color:var(--ink-2);background:var(--surface-2)}
+.tag.good{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.tag.risk{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+.score{flex:none;text-align:right}
+.score .st{color:var(--pin);font-size:13px;letter-spacing:1px}
+.score .sl{font-size:11px;color:var(--muted);margin-top:2px}
+
+.cbody{padding:18px 22px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
+.fact{background:var(--surface);padding:10px 13px}
+.fact .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.fact .v{font-size:13.5px;margin-top:2px;font-variant-numeric:tabular-nums;color:var(--ink)}
+
+.why{font-size:14px;color:var(--ink-2);margin:0 0 14px}
+.why b{color:var(--ink)}
+.elder{display:flex;gap:11px;padding:12px 15px;border-left:3px solid var(--accent);background:var(--accent-soft);
+  border-radius:0 3px 3px 0;font-size:13.5px;color:var(--ink-2);margin-bottom:16px}
+.elder .k{flex:none;font-weight:700;color:var(--accent)}
+
+.photos{margin-bottom:14px}
+.plabel{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.pgrid.one{grid-template-columns:minmax(0,430px)}
+@media (max-width:430px){.pgrid{grid-template-columns:1fr}}
+.pslot{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:3px;
+  background:var(--surface-2);overflow:hidden;text-decoration:none;color:var(--ink-2);
+  transition:border-color .15s,color .15s}
+.pslot:hover{border-color:var(--accent);color:var(--accent)}
+.pshot{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--surface-2);overflow:hidden}
+.pshot img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .35s}
+.pshot img.ok{opacity:1}
+.pshot::after{content:"사진 불러오는 중";position:absolute;inset:0;display:grid;place-items:center;
+  font-size:11px;color:var(--muted);letter-spacing:.04em}
+.pshot.loaded::after,.pshot.failed::after{content:none}
+.pshot.failed{aspect-ratio:auto;min-height:0}
+.pmeta{padding:9px 12px;display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--line)}
+.pshot.failed + .pmeta{border-top:0;min-height:74px;justify-content:center}
+.pslot .src{font-weight:700;font-size:12.5px}
+.pslot .cap{font-size:11px;color:var(--muted);line-height:1.5}
+.pslot:hover .cap{color:var(--accent)}
+.pnote{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.6}
+
+.links{display:flex;flex-wrap:wrap;gap:8px;padding-top:14px;border-top:1px solid var(--line)}
+.lnk{font-size:12.5px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);
+  border-radius:3px;padding:4px 11px;background:var(--surface)}
+.lnk:hover{border-color:var(--accent);color:var(--accent)}
+.lnk.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500}
+.lnk.primary:hover{opacity:.88;color:#fff}
+.lnk.tel{font-variant-numeric:tabular-nums}
+
+/* ---------- table ---------- */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:13px}
+th,td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--surface-2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;position:sticky;top:0;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+td.name{font-weight:500;white-space:nowrap}
+td.num,th.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.dot.naju{background:#2F6B4F}.dot.hwasun{background:#B0862B}.dot.jangseong{background:#4A6FA5}
+.stars{color:var(--pin);letter-spacing:.5px;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
+
+
+/* ---------- leaflet (inlined essentials) ---------- */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,
+.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-container{overflow:hidden;position:relative;background:#e8e4dd;-webkit-tap-highlight-color:transparent;
+  font-family:inherit;touch-action:none}
+.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+.leaflet-tile{filter:inherit;visibility:hidden;width:256px;height:256px}
+.leaflet-tile-loaded{visibility:inherit}
+.leaflet-zoom-animated{transform-origin:0 0}
+.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}
+.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}
+.leaflet-control{position:relative;z-index:800;pointer-events:auto;float:left;clear:both}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:800;pointer-events:none}
+.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
+.leaflet-right .leaflet-control{float:right;margin-right:10px}
+.leaflet-left .leaflet-control{margin-left:10px}
+.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}
+.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.4);border-radius:4px;background:#fff}
+.leaflet-bar a{background:#fff;color:#333;display:block;width:28px;height:28px;line-height:28px;
+  text-align:center;text-decoration:none;font:700 17px/28px system-ui,sans-serif;border-bottom:1px solid #ccc}
+.leaflet-bar a:last-child{border-bottom:none}
+.leaflet-bar a:hover{background:#f4f4f4}
+.leaflet-control-attribution{background:rgba(255,255,255,.8);margin:0;padding:1px 6px;font-size:10px;color:#333}
+.leaflet-control-attribution a{color:#0078A8}
+.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}
+.leaflet-popup-content-wrapper{background:#fff;color:#222;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,.4)}
+.leaflet-popup-content{margin:12px 16px;line-height:1.5;font-size:13px;min-width:150px}
+.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}
+.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;background:#fff;transform:rotate(45deg);box-shadow:0 3px 14px rgba(0,0,0,.4)}
+.leaflet-popup-close-button{position:absolute;top:0;right:0;padding:4px 8px;font:700 16px/14px system-ui;color:#757575;text-decoration:none;background:transparent}
+.leaflet-container a.leaflet-popup-close-button:hover{color:#333}
+.leaflet-fade-anim .leaflet-popup{opacity:0;transition:opacity .2s}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}
+.leaflet-grab{cursor:grab}.leaflet-dragging .leaflet-grab{cursor:grabbing}
+
+/* our marker */
+#leafmap{height:min(72vh,620px);width:100%;border-radius:3px;border:1px solid var(--line)}
+.lpin{display:grid;place-items:center;width:30px;height:30px;border-radius:50% 50% 50% 0;
+  background:#C42B1C;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.35);border:2px solid #fff}
+.lpin b{transform:rotate(45deg);color:#fff;font:700 13px/1 "Noto Sans KR",sans-serif}
+.lhome{width:18px;height:18px;border-radius:50%;background:#2563EB;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.lpop{font-family:"Noto Sans KR",sans-serif;text-align:left;line-height:1.55}
+.lpop b{display:block;font-size:14px;margin-bottom:3px;color:#111}
+.lpop span{color:#555;font-size:12px}
+.lpop a{display:inline-block;margin-top:7px;color:#2F6B4F;font-weight:700;text-decoration:none;font-size:12px}
+
+/* ---------- map ---------- */
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:18px}
+.mapbox svg{display:block;width:100%;height:auto;max-width:100%}
+.mappanel+.mappanel{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.maplegend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.maplegend .li{display:flex;gap:8px;align-items:center}
+.maplegend .pin{width:13px;height:13px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--pin);flex:none}
+.maplegend .ref{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+
+/* ---------- unverified ---------- */
+.unv{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.uitem{border:1px dashed var(--line-2);border-radius:3px;padding:13px 16px;background:var(--surface)}
+.uitem .n{font-weight:700;font-size:14px}
+.uitem .d{font-size:12.5px;color:var(--muted);margin-top:4px}
+
+/* ---------- script ---------- */
+.callscript{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:22px 24px;box-shadow:var(--shadow)}
+.callscript ol{margin:0;padding-left:1.25em}
+.callscript li{margin-bottom:11px;font-size:14px;color:var(--ink-2)}
+.callscript li b{color:var(--ink)}
+.quote{font-family:"Gowun Batang",serif;font-size:14.5px;color:var(--ink);background:var(--surface-2);
+  border-left:3px solid var(--line-2);padding:10px 15px;margin:8px 0 0;border-radius:0 3px 3px 0}
+
+footer{border-top:1px solid var(--line);background:var(--surface);margin-top:20px}
+footer .wrap{padding-block:30px 40px;font-size:12.5px;color:var(--muted)}
+footer p{margin:0 0 8px;max-width:75ch}
+footer a{color:var(--muted)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">화정동 모아아파트 기준 · 담양 외 방향</div>
+    <h1>화정동에서 차로 30분</h1>
+    <p class="dek">광주 서구 <b>화정동 모아아파트</b>를 가운데 두고 <b>나주 · 화순 · 장성</b> 방향에서 찾은 8곳입니다. 담양 쪽은 <a href="index.html">앞서 정리한 목록</a>에 있으니 여기서는 뺐습니다.</p>
+    <div class="brief">
+      <span>성인 2~3명 · 침실 2~3개</span>
+      <span>차로 25~50분</span>
+      <span>나주 2 · 화순 4 · 장성 2</span>
+    </div>
+  </div>
+</header>
+
+<nav class="jump"><div class="wrap">
+  <a href="#verdict">한눈에</a>
+  <a href="#naju">나주 2곳</a>
+  <a href="#hwasun">화순 4곳</a>
+  <a href="#jangseong">장성 2곳</a>
+  <a href="#table">비교표</a>
+  <a href="#map">위치도</a>
+  <a href="index.html">← 담양 목록</a>
+</div></nav>
+
+<main>
+
+<section id="verdict"><div class="wrap">
+  <div class="verdict">
+    <div class="verdict-head"><h2>이 방향에서는 이 셋</h2></div>
+    <div class="verdict-body">
+      <div class="vcell">
+        <div class="k">가장 가깝고 실용적</div>
+        <div class="v">나주 듀플렉스 레지던스</div>
+        <p>월 단위 객실은 취사가 됩니다. 301실 규모에 세탁기·스타일러까지 있고, 호수공원이 바로 옆이라 매일 걷기 좋습니다.</p>
+      </div>
+      <div class="vcell">
+        <div class="k">온천과 취사를 둘 다</div>
+        <div class="v">금호 화순 스파 리조트</div>
+        <p>콘도형이라 <b>전 객실에서 밥을 해 먹을 수 있습니다.</b> 실내 수영장과 온천도 있습니다. 대신 조금 멉니다.</p>
+      </div>
+      <div class="vcell">
+        <div class="k">조용한 독채를 원하면</div>
+        <div class="v">화순 비채펜션</div>
+        <p>침실 2 + 온돌방 1 + 욕실 2 독채입니다. 호수가 내려다보이고, 담양 독채보다 광주에서 가깝습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flag"><span class="mk">⚑</span><div>
+    <b>시간은 직접 확인하세요.</b> 아래 시간은 거리로 어림한 값입니다. 카드마다 <b>모아아파트에서 출발하는 길찾기</b> 버튼을 넣어뒀으니, 눌러서 실제 소요 시간을 보시는 게 정확합니다.
+  </div></div>
+</div></section>
+
+<section id="naju"><div class="wrap">
+  <div class="shead"><h2>나주 방향</h2><span class="count">남서 · 차로 25~30분 · 가장 가까움</span></div>
+  <p class="sintro">빛가람 혁신도시는 새로 지은 계획도시라 <b>도로가 넓고 주차가 편합니다.</b> 병원·마트도 가깝습니다.</p>
+  <div class="cards" id="cards-naju"></div>
+</div></section>
+
+<section id="hwasun"><div class="wrap">
+  <div class="shead"><h2>화순 방향</h2><span class="count">남동 · 차로 30~50분 · 온천</span></div>
+  <p class="sintro">화순은 <b>온천</b>이 강점입니다. 매일 온천을 하실 수 있다는 건 한 달 머물 때 값어치가 큽니다. 다만 산길이 섞여 있어 거리에 비해 시간이 걸립니다.</p>
+  <div class="cards" id="cards-hwasun"></div>
+</div></section>
+
+<section id="jangseong"><div class="wrap">
+  <div class="shead"><h2>장성 방향</h2><span class="count">북 · 차로 35~40분 · 편백숲</span></div>
+  <p class="sintro">축령산 편백숲 한가운데입니다. <b>평지 산책로</b>가 잘 되어 있어 매일 걷기에 좋습니다.</p>
+  <div class="cards" id="cards-jangseong"></div>
+</div></section>
+
+<section id="table"><div class="wrap">
+  <div class="shead"><h2>비교표</h2><span class="count">화정동 모아아파트 기준 · 2026년 9월 조사</span></div>
+  <p class="sintro">공개된 요금 범위입니다. 소요 시간은 거리로 어림한 값이니 카드의 길찾기 버튼으로 확인하세요.</p>
+  <div class="tscroll"><table>
+    <thead><tr>
+      <th>#</th><th>숙소</th><th>유형</th><th>위치</th><th class="num">차로</th><th>침실</th><th>취사</th>
+      <th class="num">1박 참고가</th><th>추천도</th>
+    </tr></thead>
+    <tbody id="tbody"></tbody>
+  </table></div>
+  <div class="legend">
+    <span><span class="dot gj"></span>나주</span>
+    <span><span class="dot dy"></span>화순</span>
+    <span><span class="dot js"></span>장성</span>
+    <span>“날짜별 확인” = 공개된 요금이 없어 문의 필요</span>
+  </div>
+</div></section>
+
+<section id="map"><div class="wrap">
+  <div class="shead"><h2>위치도</h2><span class="count">빨간 핀 8곳 + 기준점</span></div>
+  <p class="sintro"><b>파란 점이 화정동 모아아파트</b>, 빨간 핀이 숙소입니다. 핀을 누르면 이름과 길찾기 링크가 나옵니다.</p>
+  <div class="mapbox"><div id="leafmap" hidden></div><div id="mapsvg"></div>
+    <div class="maplegend">
+      <span class="li"><span class="pin"></span>숙소 8곳</span>
+      <span class="li"><span class="ref" style="background:#2563EB"></span>화정동 모아아파트 (기준점)</span>
+      <span class="li"><span class="ref"></span>기준점 (역 · 공항 · 종합병원 · 명소)</span>
+    </div>
+  </div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">
+  <p>2026년 9월 조사. 요금과 운영 방침은 바뀔 수 있으니 예약 전 숙소에 직접 확인하세요. · <a href="index.html">담양 방향 목록 보기</a></p>
+</div></footer>
+
+<script>
+const HOME = {name:"화정동 모아아파트", lat:35.1470, lng:126.8740, q:"광주 서구 화정동 모아아파트"};
+const route = d => "https://map.kakao.com/?sName=" + encodeURIComponent(HOME.q) + "&eName=" + encodeURIComponent(d);
+
+const P = [
+ {n:1,r:"naju",id:"duplex",local:0,name:"나주 듀플렉스 레지던스 호텔",sub:"나주 빛가람 혁신도시 · 301실",pick:true,
+  type:"레지던스 호텔",loc:"전남 나주시 빛가람동",drive:"약 30분",bed:"레지던스형 · 3인은 2객실",cook:"<b>월 단위 객실만 가능</b>",
+  price:"날짜별 확인",long:"월세형 객실 운영 — 문의",stars:5,
+  tags:[["월세 객실 취사 가능","good"],["세탁기·스타일러","good"],["호수공원 도보","good"]],
+  why:"이 방향에서 <b>장기 투숙에 가장 잘 맞는 곳</b>입니다. 301실 규모라 협상 여지도 크고, 객실에 싱크대·세탁기·스타일러가 있습니다. 다만 <b>취사는 월 단위 객실에서만</b> 되니 예약할 때 반드시 “월세 객실”로 지정해 문의하세요.",
+  elder:"빛가람 호수공원이 바로 옆이라 <b>평지 산책 코스</b>가 훌륭합니다. 혁신도시라 길이 넓고 주차가 편하며, 병원·약국·마트가 가깝습니다.",
+  addr:"전라남도 나주시 배멧2길 13", tel:"061-336-6111",
+  ph:[["공식 홈페이지","나주 듀플렉스 레지던스","http://www.duplexhotel.kr/"]],
+  lk:[["공식 홈페이지","http://www.duplexhotel.kr/",1],["전화 061-336-6111","tel:061-336-6111",0],["야놀자 NOL","https://nol.yanolja.com/stay/domestic/1000113473",0]],
+  kk:"나주 듀플렉스 레지던스 호텔"},
+
+ {n:2,r:"naju",id:"bitgaram",local:0,name:"호텔 빛가람",sub:"나주 빛가람 혁신도시 · 136실",pick:false,
+  type:"호텔",loc:"전남 나주시 빛가람동",drive:"약 30분",bed:"침대 134실 · 온돌 2실",cook:"불가",
+  price:"날짜별 확인",long:"문의",stars:4,
+  tags:[["관광품질인증","good"],["온돌방 선택 가능","good"],["취사 불가","risk"]],
+  why:"한국관광공사 <b>품질인증을 받은 호텔</b>이라 청결·응대 수준이 검증돼 있습니다. 혁신도시 중심이라 주변이 깔끔하고 조용합니다.",
+  elder:"<b>온돌방이 2실</b> 있습니다. 침대가 불편하신 분께는 이 선택지가 의미가 큽니다. 다만 2실뿐이라 미리 확보해야 합니다. 취사가 안 되니 외식·배달 전제입니다.",
+  addr:"전라남도 나주시 빛가람로 36", tel:"061-338-9000",
+  ph:[["트립닷컴","호텔 빛가람","https://kr.trip.com/hotels/naju-si-hotel-detail-22233228/hotel-bitgaram/"]],
+  lk:[["트립닷컴 예약","https://kr.trip.com/hotels/naju-si-hotel-detail-22233228/hotel-bitgaram/",1],["전화 061-338-9000","tel:061-338-9000",0],["아고다 요금","https://www.agoda.com/ko-kr/hotel-bitgaram/hotel/naju-si-kr.html",0]],
+  kk:"나주 빛가람호텔"},
+
+ {n:3,r:"hwasun",id:"okspa",local:0,name:"도곡 원네스 스파·리조트",sub:"화순 도곡온천단지",pick:false,
+  type:"온천 리조트",loc:"전남 화순군 도곡면",drive:"약 30분",bed:"객실 타입별 상이 — 문의",cook:"확인 필요",
+  price:"날짜별 확인",long:"문의",stars:4,
+  tags:[["도곡온천","good"],["광주에서 가까움","good"],["취사 여부 확인","risk"]],
+  why:"화순 온천 중 <b>광주에서 가장 가깝습니다.</b> 도곡온천은 알칼리성 온천수로 오래된 온천지구라 주변 정비가 잘 돼 있습니다.",
+  elder:"매일 온천을 하실 수 있고 도로가 평탄해 오가기 편합니다. 다만 <b>객실 취사 가능 여부를 반드시 전화로 확인</b>하세요 — 온천 리조트는 취사를 막는 곳이 많습니다.",
+  addr:"전라남도 화순군 도곡면 천암리", tel:"",
+  ph:[["공식 홈페이지","도곡 원네스 스파리조트","http://www.okspaland.com/"]],
+  lk:[["공식 홈페이지","http://www.okspaland.com/",1],["객실 안내","http://www.okspaland.com/bbs/board.php?bo_table=gallery2",0]],
+  kk:"도곡 원네스 스파리조트"},
+
+ {n:4,r:"hwasun",id:"kumho",local:0,name:"금호 화순 스파 리조트",sub:"화순 북면 · 콘도형",pick:true,
+  type:"콘도형 리조트",loc:"전남 화순군 북면",drive:"약 45~50분",bed:"콘도형 객실 · 타입별 상이",cook:"<b>전 객실 가능</b> — 취사도구·식기 비치",
+  price:"날짜별 확인",long:"문의",stars:5,
+  tags:[["전 객실 취사 가능","good"],["실내 수영장","good"],["온천","good"],["조금 멀다","risk"]],
+  why:"이 목록에서 <b>취사가 확실하게 되는 유일한 리조트</b>입니다. 콘두형이라 객실에 주방과 식기까지 갖춰져 있어 한 달 생활이 실제로 굴러갑니다. 실내 수영장과 온천도 있습니다.",
+  elder:"밥을 해 드실 수 있고 매일 온천을 하실 수 있다는 조합이 강력합니다. 실내 수영장은 물속 걷기에도 좋습니다. 대신 <b>산길이라 광주까지 45~50분</b> 걸리니 병원을 자주 가셔야 한다면 부담입니다.",
+  addr:"전라남도 화순군 북면 옥리길 14-21", tel:"",
+  ph:[["금호리조트 공식","금호 화순 스파 리조트","https://www.kumhoresort.co.kr/"]],
+  lk:[["금호리조트 공식","https://www.kumhoresort.co.kr/",1],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/6778",0],["아고다 요금","https://www.agoda.com/ko-kr/kumho-hwasun-resort/hotel/hwasun-gun-kr.html",0]],
+  kk:"금호화순리조트"},
+
+ {n:5,r:"hwasun",id:"biche",local:0,name:"화순 비채펜션",sub:"화순 한천면 · 신축 독채 풀빌라",pick:true,
+  type:"독채 풀빌라",loc:"전남 화순군 한천면",drive:"약 35~40분",bed:"침실 2 + 온돌방 1 · 욕실 2",cook:"가능 — 인덕션·냉장고·전자레인지",
+  price:"날짜별 확인",long:"호스트 협의",stars:4,
+  tags:[["방 3개 구성","good"],["호수 전망","good"],["신축","good"],["2층 여부 확인","risk"]],
+  why:"<b>침실 2개 + 온돌방 1개</b>라 세 분이 각자 방을 쓸 수 있습니다. 욕실도 2개입니다. 신축이라 깨끗하고, 담양 독채보다 광주에서 가깝습니다.",
+  elder:"온돌방이 있어 좌식이 편한 분께 잘 맞습니다. 호수가 내려다보여 앉아서 보내는 시간이 지루하지 않습니다. 풀빌라는 2층 구조가 흔하니 <b>침실이 1층에 있는지</b> 꼭 물어보세요.",
+  addr:"전라남도 화순군 한천면 용암길 48-61", tel:"",
+  ph:[["공식 홈페이지","화순 비채펜션","http://bichepension.com/"]],
+  lk:[["공식 홈페이지","http://bichepension.com/",1],["야놀자 NOL","https://nol.yanolja.com/stay/domestic/10065865",0]],
+  kk:"화순 비채펜션"},
+
+ {n:6,r:"hwasun",id:"shwim",local:0,name:"화순 쉼펜션",sub:"화순 · 대형 독채",pick:false,
+  type:"대형 독채 펜션",loc:"전남 화순군",drive:"약 35~40분",bed:"방 3개 · 넓은 거실",cook:"가능",
+  price:"날짜별 확인",long:"호스트 협의",stars:4,
+  tags:[["방 3개","good"],["넓은 거실","good"],["정확한 주소 문의","risk"]],
+  why:"<b>방 3개에 거실이 넓고</b> 바비큐장이 따로 있는 대형 독채입니다. 여럿이 지내기 좋은 구조입니다.",
+  elder:"거실이 넓으면 어르신이 하루를 보내실 자리가 생깁니다. 다만 제가 <b>정확한 주소를 확인하지 못했습니다.</b> 예약 전 위치와 1층 구조를 함께 물어보세요.",
+  addr:"전라남도 화순군 (주소 문의)", tel:"",
+  ph:[["야놀자 NOL","화순 쉼펜션","https://nol.yanolja.com/stay/domestic/10050953"]],
+  lk:[["야놀자 NOL 예약","https://nol.yanolja.com/stay/domestic/10050953",1],["트리플 정보","https://triple.guide/hotels/3165f0c0-86d3-4e2a-b59f-dbb08c2f8800",0]],
+  kk:"화순 쉼펜션"},
+
+ {n:7,r:"jangseong",id:"pyeonbaek",local:0,name:"장성 편백통나무펜션",sub:"장성 축령산 휴양림 한가운데",pick:false,
+  type:"통나무 독채 펜션",loc:"전남 장성군 서삼면",drive:"약 35~40분",bed:"객실 타입별 상이 — 문의",cook:"가능",
+  price:"날짜별 확인",long:"호스트 협의",stars:4,
+  tags:[["편백숲 한가운데","good"],["평지 산책로","good"],["객실 구성 문의","risk"]],
+  why:"축령산 편백나무 숲 <b>한가운데</b>에 있는 통나무집입니다. 놀러 가는 펜션이 아니라 쉬러 가는 곳을 표방합니다. 편백 향은 호흡기와 수면에 좋다고 알려져 있습니다.",
+  elder:"축령산 치유의 숲은 <b>경사가 완만한 산책로</b>가 잘 되어 있어 어르신이 매일 걷기에 좋습니다. 방 개수는 타입마다 다르니 3인이 각자 쓸 수 있는지 확인하세요.",
+  addr:"전라남도 장성군 서삼면 축령산 일원", tel:"",
+  ph:[["야놀자 NOL","장성 편백통나무펜션","https://nol.yanolja.com/stay/domestic/1000106175"]],
+  lk:[["야놀자 NOL 예약","https://nol.yanolja.com/stay/domestic/1000106175",1]],
+  kk:"장성 편백통나무펜션"},
+
+ {n:8,r:"jangseong",id:"pyeonbaekhouse",local:0,name:"축령산 편백하우스",sub:"장성 축령산 · 기와집 펜션",pick:false,
+  type:"기와집 독채 펜션",loc:"전남 장성군 서삼면",drive:"약 35~40분",bed:"객실 타입별 상이 — 문의",cook:"가능",
+  price:"날짜별 확인",long:"호스트 협의",stars:4,
+  tags:[["전 객실 편백 시공","good"],["기와집 · 단층","good"],["객실 구성 문의","risk"]],
+  why:"전 객실을 <b>편백나무로 시공한 기와집</b>입니다. 한옥 형태라 단층 구조일 가능성이 높아 계단 걱정이 덜합니다.",
+  elder:"기와집 구조라 문턱은 있을 수 있지만 계단은 거의 없습니다. 편백숲 산책로가 바로 옆입니다. 장성 8경이 가까워 가벼운 나들이 코스가 많습니다.",
+  addr:"전라남도 장성군 서삼면 축령산 일원", tel:"",
+  ph:[["여기어때","축령산 편백하우스","https://www.goodchoice.kr/product/detail?ano=59411"]],
+  lk:[["여기어때 예약","https://www.goodchoice.kr/product/detail?ano=59411",1]],
+  kk:"장성 축령산편백하우스"}
+];
+
+// 주소 기준 근사 좌표
+Object.assign(P[0], {lat:35.0215, lng:126.7900});
+Object.assign(P[1], {lat:35.0180, lng:126.7885});
+Object.assign(P[2], {lat:35.0310, lng:126.9330});
+Object.assign(P[3], {lat:35.1560, lng:127.0790});
+Object.assign(P[4], {lat:35.0900, lng:127.0250});
+Object.assign(P[5], {lat:35.0620, lng:126.9860});
+Object.assign(P[6], {lat:35.3350, lng:126.7550});
+Object.assign(P[7], {lat:35.3320, lng:126.7580});
+
+const esc = s => String(s);
+const kk = q => "https://map.kakao.com/?q=" + encodeURIComponent(q);
+const stars = n => "★".repeat(n) + "☆".repeat(5-n);
+
+function card(p){
+  const t = p.tags.map(([x,c])=>`<span class="tag ${c}">${x}</span>`).join("");
+  const f = [["침실",p.bed],["취사",p.cook],["1박 참고가",p.price],["장기 요금",p.long]]
+    .map(([k,v])=>`<div class="fact"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
+  const link = p.ph[0], slots = Math.max(p.local || 0, 1);
+  const ph = Array.from({length: slots}, (_, k) =>
+    `<a class="pslot" href="${link[2]}" target="_blank" rel="noopener">`+
+    `<span class="pshot" data-page="${encodeURIComponent(link[2])}"`+
+    `${(p.local||0) > k ? ` data-local="images/${p.id}-${k+1}"` : ""}`+
+    `${k > 0 ? ' data-localonly="1"' : ''}><img alt="${p.name} 사진 ${k+1}" loading="lazy"></span>`+
+    `<span class="pmeta"><span class="src">${link[0]} ↗</span><span class="cap">${link[1]}</span></span></a>`).join("");
+  const lk = p.lk.map(([s,u,pri])=>`<a class="lnk ${pri?"primary":""} ${u.startsWith("tel:")?"tel":""}" href="${u}" ${u.startsWith("tel:")?"":'target="_blank" rel="noopener"'}>${s}</a>`).join("")
+    + `<a class="lnk" href="${route(p.kk)}" target="_blank" rel="noopener">모아아파트에서 길찾기 ↗</a>`+ `<a class="lnk" href="${kk(p.kk)}" target="_blank" rel="noopener">지도에서 보기 ↗</a>`;
+  return `<article class="card ${p.pick?"pick":""}">
+    <div class="chead">
+      <div class="rank">${p.n}</div>
+      <div class="ctitle"><h3>${p.name}</h3><div class="sub">${p.sub}${p.tel?" · "+p.tel:""}</div><div class="tags">${t}</div></div>
+      <div class="score"><div class="st">${stars(p.stars)}</div><div class="sl">추천도</div></div>
+    </div>
+    <div class="cbody">
+      <div class="facts">${f}</div>
+      <p class="why">${p.why}</p>
+      <div class="elder"><span class="k">93세 관점</span><span>${p.elder}</span></div>
+      <div class="photos"><div class="plabel">실제 사진</div><div class="pgrid${slots===1?" one":""}">${ph}</div><p class="pnote">숙소 홈페이지의 대표 사진입니다. 눌러서 전체 사진첩으로 이동하세요.</p></div>
+      <div class="links">${lk}</div>
+    </div>
+  </article>`;
+}
+
+for(const region of ["naju","hwasun","jangseong"])
+  document.getElementById("cards-"+region).innerHTML = P.filter(p=>p.r===region).map(card).join("");
+
+document.getElementById("tbody").innerHTML = P.map(p=>`<tr>
+  <td class="num">${p.n}</td>
+  <td class="name"><span class="dot ${p.r}"></span>${p.name}</td>
+  <td>${p.type}</td><td>${p.loc}</td><td class="num">${p.drive}</td><td>${p.bed}</td><td>${p.cook}</td>
+  <td class="num">${p.price}</td>
+  <td class="stars">${stars(p.stars)}</td></tr>`).join("");
+
+
+/* ---- coordinate map : two panels, one figure ---- */
+const REF = [
+ ["화정동 모아아파트 (기준점)",HOME.lat,HOME.lng],
+ ["광주송정역",35.1394,126.7915],["광주공항",35.1264,126.8090],
+ ["전남대병원",35.1395,126.9235],["나주역",35.0175,126.7135],
+ ["화순읍",35.0625,126.9865],["장성읍",35.3015,126.7885],
+ ["무등산 정상",35.1341,126.9885]
+];
+
+function drawMap(pins, refs, caption, W, H){
+  const M={t:30,r:30,b:48,l:52};
+  const all=[...pins.map(p=>[p.lat,p.lng]),...refs.map(r=>[r[1],r[2]])];
+  let lat0=Math.min(...all.map(a=>a[0])), lat1=Math.max(...all.map(a=>a[0]));
+  let lng0=Math.min(...all.map(a=>a[1])), lng1=Math.max(...all.map(a=>a[1]));
+  const padLa=Math.max((lat1-lat0)*0.26,0.014), padLn=Math.max((lng1-lng0)*0.10,0.014);
+  lat0-=padLa; lat1+=padLa; lng0-=padLn; lng1+=padLn;
+  const X=l=>M.l+(l-lng0)/(lng1-lng0)*(W-M.l-M.r);
+  const Y=l=>M.t+(lat1-l)/(lat1-lat0)*(H-M.t-M.b);
+  const step=(lng1-lng0)>0.12?0.05:0.02;
+  let g="";
+  for(let la=Math.ceil(lat0/step)*step; la<=lat1; la+=step){
+    const y=Y(la); if(y<M.t||y>H-M.b) continue;
+    g+=`<line x1="${M.l}" y1="${y.toFixed(1)}" x2="${W-M.r}" y2="${y.toFixed(1)}" stroke="var(--line)" stroke-width="1"/>`;
+    g+=`<text x="${M.l-7}" y="${(y+3.5).toFixed(1)}" fill="var(--muted)" font-size="9.5" text-anchor="end">${la.toFixed(2)}°N</text>`;
+  }
+  for(let ln=Math.ceil(lng0/step)*step; ln<=lng1; ln+=step){
+    const x=X(ln); if(x<M.l||x>W-M.r) continue;
+    g+=`<line x1="${x.toFixed(1)}" y1="${M.t}" x2="${x.toFixed(1)}" y2="${H-M.b}" stroke="var(--line)" stroke-width="1"/>`;
+    g+=`<text x="${x.toFixed(1)}" y="${H-M.b+15}" fill="var(--muted)" font-size="9.5" text-anchor="middle">${ln.toFixed(2)}°E</text>`;
+  }
+  // reference points
+  refs.forEach(([n,la,ln])=>{
+    const x=X(ln),y=Y(la);
+    const home = n.indexOf("기준점") >= 0;
+    g+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${home?6:3.4}" fill="${home?"#2563EB":"var(--muted)"}"${home?' stroke="#fff" stroke-width="2"':''}/>`;
+    const right = x < W*0.72;
+    g+=`<text x="${(x+(right?7:-7)).toFixed(1)}" y="${(y+3.4).toFixed(1)}" fill="${home?"#2563EB":"var(--muted)"}" font-size="10.5" font-weight="${home?700:400}" text-anchor="${right?"start":"end"}">${n}</text>`;
+  });
+  // pins: fan out overlapping points, then de-collide labels
+  const pts = pins.map(p=>({p, tx:X(p.lng), ty:Y(p.lat), fx:X(p.lng), fy:Y(p.lat)}))
+                  .sort((a,b)=>a.tx-b.tx || a.ty-b.ty);
+  const clusters=[];
+  pts.forEach(pt=>{
+    const c = clusters.find(c=>Math.abs(c.cx-pt.tx)<30 && Math.abs(c.cy-pt.ty)<30);
+    if(c){ c.items.push(pt); c.cx=c.items.reduce((s,i)=>s+i.tx,0)/c.items.length;
+           c.cy=c.items.reduce((s,i)=>s+i.ty,0)/c.items.length; }
+    else clusters.push({cx:pt.tx, cy:pt.ty, items:[pt]});
+  });
+  clusters.forEach(c=>{
+    const k=c.items.length; if(k===1) return;
+    c.items.forEach((pt,i)=>{ pt.fx = c.cx + (i-(k-1)/2)*30; pt.fy = c.cy - 6; });
+  });
+  const placed=[];
+  [...pts].sort((a,b)=>a.fy-b.fy).forEach(pt=>{
+    const {p,tx,ty,fx,fy}=pt;
+    const label=p.name.split(" (")[0];
+    const halfW=label.length*5.6;
+    let ly=fy+15;
+    for(let guard=0; guard<16; guard++){
+      if(!placed.some(q=>Math.abs(q.ly-ly)<12.5 && Math.abs(q.x-fx)<(q.halfW+halfW))) break;
+      ly+=12.5;
+    }
+    placed.push({x:fx, ly, halfW});
+    if(fx!==tx || fy!==ty){
+      g+=`<circle cx="${tx.toFixed(1)}" cy="${ty.toFixed(1)}" r="2.2" fill="var(--pin)"/>`;
+      g+=`<line x1="${tx.toFixed(1)}" y1="${ty.toFixed(1)}" x2="${fx.toFixed(1)}" y2="${fy.toFixed(1)}" stroke="var(--pin)" stroke-width="1" opacity=".55"/>`;
+    }
+    g+=`<line x1="${fx.toFixed(1)}" y1="${(fy+2).toFixed(1)}" x2="${fx.toFixed(1)}" y2="${(ly-8).toFixed(1)}" stroke="var(--line-2)" stroke-width="1"/>`;
+    g+=`<path d="M ${fx.toFixed(1)} ${fy.toFixed(1)} c -9 -12 -13 -17 -13 -23 a 13 13 0 1 1 26 0 c 0 6 -4 11 -13 23 z" fill="var(--pin)" stroke="var(--surface)" stroke-width="1.6"/>`;
+    g+=`<text x="${fx.toFixed(1)}" y="${(fy-18.5).toFixed(1)}" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">${p.n}</text>`;
+    g+=`<text x="${fx.toFixed(1)}" y="${ly.toFixed(1)}" fill="var(--ink)" font-size="10.5" font-weight="500" text-anchor="middle">${label}</text>`;
+  });
+  // scale bar: 5 km ≈ 0.0551° lng at 35°N
+  const sw=X(lng0+0.0551)-X(lng0), sx=M.l+12, sy=H-M.b-13;
+  if(sw < (W-M.l-M.r)*0.6){
+    g+=`<line x1="${sx}" y1="${sy}" x2="${(sx+sw).toFixed(1)}" y2="${sy}" stroke="var(--ink-2)" stroke-width="2"/>`;
+    g+=`<line x1="${sx}" y1="${sy-4}" x2="${sx}" y2="${sy+4}" stroke="var(--ink-2)" stroke-width="2"/>`;
+    g+=`<line x1="${(sx+sw).toFixed(1)}" y1="${sy-4}" x2="${(sx+sw).toFixed(1)}" y2="${sy+4}" stroke="var(--ink-2)" stroke-width="2"/>`;
+    g+=`<text x="${(sx+sw/2).toFixed(1)}" y="${sy-9}" fill="var(--ink-2)" font-size="10" text-anchor="middle">약 5 km</text>`;
+  }
+  g+=`<text x="${W-M.r}" y="${M.t-11}" fill="var(--muted)" font-size="12" font-weight="700" letter-spacing="2.5" text-anchor="end">${caption}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${caption} 추천 숙소 위치도"><rect width="${W}" height="${H}" fill="var(--surface)"/>${g}</svg>`;
+}
+
+document.getElementById("mapsvg").innerHTML =
+  `<div class="mappanel">${drawMap(P, REF, "광주 · 나주 · 화순 · 장성", 900, 620)}</div>`;
+
+/* ==========================================================================
+   지도 — 카카오 / 네이버 / 구글 중 키가 있는 것을 쓰고, 없으면 OpenStreetMap.
+   키를 넣는 곳은 여기 한 줄뿐입니다. 넣고 저장하면 바로 바뀝니다.
+   ========================================================================== */
+const MAP_KEY = {
+  kakao:  "694913ede74cb17c51c941cb464dc419",   // 카카오 JavaScript 키
+  naver:  "",   // 네이버 지도 Key ID    (console.ncloud.com)
+  google: ""    // 구글 Maps API 키      (console.cloud.google.com)
+};
+
+(function(){
+  const el  = document.getElementById("leafmap");
+  const svg = document.getElementById("mapsvg");
+  const lats = P.map(p=>p.lat), lngs = P.map(p=>p.lng);
+  const mid = [(Math.min(...lats)+Math.max(...lats))/2, (Math.min(...lngs)+Math.max(...lngs))/2];
+  const pinHTML = n => `<div class="lpin"><b>${n}</b></div>`;
+  const popHTML = p =>
+    `<div class="lpop"><b>${p.name}</b><span>${p.loc} · ${p.price}</span>`+
+    `<a href="${route(p.kk)}" target="_blank" rel="noopener">모아아파트에서 길찾기 ↗</a></div>`;
+
+  let settled = false, triedOsm = false;
+  function show(){ if(settled) return; settled = true; el.hidden = false; svg.hidden = true; }
+  function giveUp(){
+    if(settled) return;
+    if(!triedOsm){                       // 키가 막혀 있으면 조용히 OSM 으로 대체
+      triedOsm = true;
+      console.warn("[지도] 카카오/네이버/구글 지도를 불러오지 못해 OpenStreetMap 으로 표시합니다. "+
+                   "카카오맵이라면 콘솔에서 사이트 도메인(https://mrsure1.github.io) 등록과 "+
+                   "카카오맵 제품 활성화를 확인하세요.");
+      el.innerHTML = ""; osmMap(); return;
+    }
+    el.hidden = true; svg.hidden = false;
+  }
+
+  function script(src, onload){
+    const t = document.createElement("script");
+    t.src = src; t.async = true; t.onload = onload;
+    t.onerror = function(){
+      console.error("[지도] 스크립트를 받지 못했습니다:", src.split("?")[0],
+        "\n→ 카카오맵이라면 JavaScript 키가 틀렸거나, 카카오 개발자 콘솔에 "+
+        "사이트 도메인(https://mrsure1.github.io)이 등록되지 않아 요청이 거부된 것입니다.");
+      giveUp();
+    };
+    document.head.appendChild(t);
+  }
+
+  // ---------- 카카오맵 ----------
+  function kakaoMap(){
+    script(`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${MAP_KEY.kakao}&autoload=false`, function(){
+      if(!window.kakao || !kakao.maps){
+        console.error("[카카오맵] SDK 를 불러오지 못했습니다. JavaScript 키가 맞는지 확인하세요.");
+        return giveUp();
+      }
+      const guard = setTimeout(function(){
+        console.error("[카카오맵] SDK 는 받았지만 지도 데이터를 받지 못했습니다. "+
+          "대개 (1) 제품 설정 → 카카오맵 활성화가 꺼져 있거나 "+
+          "(2) 사이트 도메인에 https://mrsure1.github.io 가 등록되지 않은 경우입니다.");
+        giveUp();
+      }, 9000);
+      kakao.maps.load(function(){
+        clearTimeout(guard);
+        el.hidden = false;
+        const map = new kakao.maps.Map(el, {center:new kakao.maps.LatLng(mid[0],mid[1]), level:11});
+        const bounds = new kakao.maps.LatLngBounds();
+        P.forEach(p=>{
+          const pos = new kakao.maps.LatLng(p.lat,p.lng);
+          bounds.extend(pos);
+          new kakao.maps.CustomOverlay({map, position:pos, yAnchor:1, content:pinHTML(p.n)});
+          const info = new kakao.maps.InfoWindow({content:`<div style="padding:9px 12px">${popHTML(p)}</div>`});
+          const hit = new kakao.maps.Marker({map, position:pos, opacity:0});
+          kakao.maps.event.addListener(hit,"click",()=>info.open(map,hit));
+        });
+        bounds.extend(new kakao.maps.LatLng(HOME.lat, HOME.lng));
+        new kakao.maps.CustomOverlay({map, position:new kakao.maps.LatLng(HOME.lat,HOME.lng),
+          yAnchor:0.5, content:'<div class="lhome" title="'+HOME.name+'"></div>'});
+        map.setBounds(bounds);
+        show();
+      });
+    });
+  }
+
+  // ---------- 네이버 지도 ----------
+  function naverMap(){
+    script(`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${MAP_KEY.naver}`, function(){
+      if(!window.naver || !naver.maps) return giveUp();
+      el.hidden = false;
+      const map = new naver.maps.Map(el, {center:new naver.maps.LatLng(mid[0],mid[1]), zoom:10});
+      const bounds = new naver.maps.LatLngBounds();
+      P.forEach(p=>{
+        const pos = new naver.maps.LatLng(p.lat,p.lng);
+        bounds.extend(pos);
+        const mk = new naver.maps.Marker({position:pos, map,
+          icon:{content:pinHTML(p.n), anchor:new naver.maps.Point(15,30)}});
+        const info = new naver.maps.InfoWindow({content:`<div style="padding:9px 12px">${popHTML(p)}</div>`});
+        naver.maps.Event.addListener(mk,"click",()=>info.open(map,mk));
+      });
+      map.fitBounds(bounds);
+      show();
+    });
+  }
+
+  // ---------- 구글 지도 ----------
+  function googleMap(){
+    window.__gmapReady = function(){
+      if(!window.google || !google.maps) return giveUp();
+      el.hidden = false;
+      const map = new google.maps.Map(el, {center:{lat:mid[0],lng:mid[1]}, zoom:10, mapTypeControl:false});
+      const bounds = new google.maps.LatLngBounds();
+      const info = new google.maps.InfoWindow();
+      P.forEach(p=>{
+        bounds.extend({lat:p.lat,lng:p.lng});
+        const mk = new google.maps.Marker({position:{lat:p.lat,lng:p.lng}, map, title:p.name,
+          label:{text:String(p.n), color:"#fff", fontWeight:"700", fontSize:"12px"},
+          icon:{path:google.maps.SymbolPath.CIRCLE, scale:13, fillColor:"#C42B1C",
+                fillOpacity:1, strokeColor:"#fff", strokeWeight:2}});
+        mk.addListener("click",()=>{ info.setContent(popHTML(p)); info.open(map,mk); });
+      });
+      bounds.extend({lat:HOME.lat, lng:HOME.lng});
+      new google.maps.Marker({position:{lat:HOME.lat,lng:HOME.lng}, map, title:HOME.name,
+        icon:{path:google.maps.SymbolPath.CIRCLE, scale:9, fillColor:"#2563EB",
+              fillOpacity:1, strokeColor:"#fff", strokeWeight:2}});
+      map.fitBounds(bounds, 50);
+      show();
+    };
+    script(`https://maps.googleapis.com/maps/api/js?key=${MAP_KEY.google}&callback=__gmapReady`, null);
+  }
+
+  // ---------- OpenStreetMap (키 없이 동작하는 기본값) ----------
+  function osmMap(){
+    script("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js", function(){
+      if(!window.L) return giveUp();
+      el.hidden = false;
+      let map;
+      try{ map = L.map(el, {scrollWheelZoom:false}); }catch(e){ return giveUp(); }
+      const tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom:18, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      });
+      tiles.on("tileload", function(){ show(); setTimeout(()=>map.invalidateSize(), 60); });
+      tiles.addTo(map);
+      P.forEach(p=>{
+        L.marker([p.lat,p.lng], {title:p.name, icon:L.divIcon({className:"",
+          html:pinHTML(p.n), iconSize:[30,30], iconAnchor:[15,30], popupAnchor:[0,-28]})})
+         .addTo(map).bindPopup(popHTML(p));
+      });
+      L.marker([HOME.lat, HOME.lng], {title:HOME.name, icon:L.divIcon({className:"",
+        html:'<div class="lhome"></div>', iconSize:[18,18], iconAnchor:[9,9]})})
+       .addTo(map).bindPopup(`<div class="lpop"><b>${HOME.name}</b><span>기준점</span></div>`);
+      map.fitBounds(P.map(p=>[p.lat,p.lng]).concat([[HOME.lat,HOME.lng]]), {padding:[45,45]});
+      setTimeout(giveUp, 7000);
+    });
+  }
+
+  if(MAP_KEY.kakao)       kakaoMap();
+  else if(MAP_KEY.naver)  naverMap();
+  else if(MAP_KEY.google) googleMap();
+  else                    osmMap();
+})();
+
+</script>
