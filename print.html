@@ -214,6 +214,7 @@ td.num,th.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .lpin{display:grid;place-items:center;width:30px;height:30px;border-radius:50% 50% 50% 0;
   background:#C42B1C;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.35);border:2px solid #fff}
 .lpin b{transform:rotate(45deg);color:#fff;font:700 13px/1 "Noto Sans KR",sans-serif}
+.lpop{font-family:"Noto Sans KR",sans-serif;text-align:left;line-height:1.55}
 .lpop b{display:block;font-size:14px;margin-bottom:3px;color:#111}
 .lpop span{color:#555;font-size:12px}
 .lpop a{display:inline-block;margin-top:7px;color:#2F6B4F;font-weight:700;text-decoration:none;font-size:12px}
@@ -672,46 +673,126 @@ document.getElementById("mapsvg").innerHTML =
   boxes.forEach(b=>io.observe(b));
 })();
 
-/* ---- 실제 지도(Leaflet). 타일을 못 불러오면 위 좌표 위치도가 그대로 남는다 ---- */
+/* ==========================================================================
+   지도 — 카카오 / 네이버 / 구글 중 키가 있는 것을 쓰고, 없으면 OpenStreetMap.
+   키를 넣는 곳은 여기 한 줄뿐입니다. 넣고 저장하면 바로 바뀝니다.
+   ========================================================================== */
+const MAP_KEY = {
+  kakao:  "",   // 카카오 JavaScript 키  (developers.kakao.com)
+  naver:  "",   // 네이버 지도 Key ID    (console.ncloud.com)
+  google: ""    // 구글 Maps API 키      (console.cloud.google.com)
+};
+
 (function(){
-  const sc = document.createElement("script");
-  sc.src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js";
-  sc.onerror = () => {};
-  sc.onload = function(){
-    if(!window.L) return;
-    const el = document.getElementById("leafmap");
-    const svg = document.getElementById("mapsvg");
-    el.hidden = false;
-    let map;
-    try{ map = L.map(el, {scrollWheelZoom:false, attributionControl:true}); }
-    catch(e){ el.hidden = true; return; }
-    const tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  const el  = document.getElementById("leafmap");
+  const svg = document.getElementById("mapsvg");
+  const lats = P.map(p=>p.lat), lngs = P.map(p=>p.lng);
+  const mid = [(Math.min(...lats)+Math.max(...lats))/2, (Math.min(...lngs)+Math.max(...lngs))/2];
+  const pinHTML = n => `<div class="lpin"><b>${n}</b></div>`;
+  const popHTML = p =>
+    `<div class="lpop"><b>${p.name}</b><span>${p.loc} · ${p.price}</span>`+
+    `<a href="https://map.kakao.com/?q=${encodeURIComponent(p.kk)}" target="_blank" rel="noopener">카카오맵에서 열기 ↗</a></div>`;
+
+  let settled = false;
+  function show(){ if(settled) return; settled = true; el.hidden = false; svg.hidden = true; }
+  function giveUp(){ if(settled) return; el.hidden = true; svg.hidden = false; }
+
+  function script(src, onload){
+    const t = document.createElement("script");
+    t.src = src; t.async = true; t.onload = onload; t.onerror = giveUp;
+    document.head.appendChild(t);
+  }
+
+  // ---------- 카카오맵 ----------
+  function kakaoMap(){
+    script(`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${MAP_KEY.kakao}&autoload=false`, function(){
+      if(!window.kakao || !kakao.maps) return giveUp();
+      kakao.maps.load(function(){
+        el.hidden = false;
+        const map = new kakao.maps.Map(el, {center:new kakao.maps.LatLng(mid[0],mid[1]), level:11});
+        const bounds = new kakao.maps.LatLngBounds();
+        P.forEach(p=>{
+          const pos = new kakao.maps.LatLng(p.lat,p.lng);
+          bounds.extend(pos);
+          new kakao.maps.CustomOverlay({map, position:pos, yAnchor:1, content:pinHTML(p.n)});
+          const info = new kakao.maps.InfoWindow({content:`<div style="padding:9px 12px">${popHTML(p)}</div>`});
+          const hit = new kakao.maps.Marker({map, position:pos, opacity:0});
+          kakao.maps.event.addListener(hit,"click",()=>info.open(map,hit));
+        });
+        map.setBounds(bounds);
+        show();
+      });
     });
-    let ok = false;
-    tiles.on("tileload", function(){
-      if(ok) return;
-      ok = true;
-      svg.hidden = true;                    // real map worked — retire the fallback
-      setTimeout(()=>map.invalidateSize(), 60);
+  }
+
+  // ---------- 네이버 지도 ----------
+  function naverMap(){
+    script(`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${MAP_KEY.naver}`, function(){
+      if(!window.naver || !naver.maps) return giveUp();
+      el.hidden = false;
+      const map = new naver.maps.Map(el, {center:new naver.maps.LatLng(mid[0],mid[1]), zoom:10});
+      const bounds = new naver.maps.LatLngBounds();
+      P.forEach(p=>{
+        const pos = new naver.maps.LatLng(p.lat,p.lng);
+        bounds.extend(pos);
+        const mk = new naver.maps.Marker({position:pos, map,
+          icon:{content:pinHTML(p.n), anchor:new naver.maps.Point(15,30)}});
+        const info = new naver.maps.InfoWindow({content:`<div style="padding:9px 12px">${popHTML(p)}</div>`});
+        naver.maps.Event.addListener(mk,"click",()=>info.open(map,mk));
+      });
+      map.fitBounds(bounds);
+      show();
     });
-    tiles.addTo(map);
-    P.forEach(p=>{
-      L.marker([p.lat, p.lng], {
-        icon: L.divIcon({className:"", html:`<div class="lpin"><b>${p.n}</b></div>`,
-                         iconSize:[30,30], iconAnchor:[15,30], popupAnchor:[0,-28]}),
-        title: p.name
-      }).addTo(map).bindPopup(
-        `<div class="lpop"><b>${p.name}</b><span>${p.loc} · ${p.price}</span>`+
-        `<a href="https://map.kakao.com/?q=${encodeURIComponent(p.kk)}" target="_blank" rel="noopener">카카오맵에서 열기 ↗</a></div>`
-      );
+  }
+
+  // ---------- 구글 지도 ----------
+  function googleMap(){
+    window.__gmapReady = function(){
+      if(!window.google || !google.maps) return giveUp();
+      el.hidden = false;
+      const map = new google.maps.Map(el, {center:{lat:mid[0],lng:mid[1]}, zoom:10, mapTypeControl:false});
+      const bounds = new google.maps.LatLngBounds();
+      const info = new google.maps.InfoWindow();
+      P.forEach(p=>{
+        bounds.extend({lat:p.lat,lng:p.lng});
+        const mk = new google.maps.Marker({position:{lat:p.lat,lng:p.lng}, map, title:p.name,
+          label:{text:String(p.n), color:"#fff", fontWeight:"700", fontSize:"12px"},
+          icon:{path:google.maps.SymbolPath.CIRCLE, scale:13, fillColor:"#C42B1C",
+                fillOpacity:1, strokeColor:"#fff", strokeWeight:2}});
+        mk.addListener("click",()=>{ info.setContent(popHTML(p)); info.open(map,mk); });
+      });
+      map.fitBounds(bounds, 50);
+      show();
+    };
+    script(`https://maps.googleapis.com/maps/api/js?key=${MAP_KEY.google}&callback=__gmapReady`, null);
+  }
+
+  // ---------- OpenStreetMap (키 없이 동작하는 기본값) ----------
+  function osmMap(){
+    script("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js", function(){
+      if(!window.L) return giveUp();
+      el.hidden = false;
+      let map;
+      try{ map = L.map(el, {scrollWheelZoom:false}); }catch(e){ return giveUp(); }
+      const tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom:18, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      });
+      tiles.on("tileload", function(){ show(); setTimeout(()=>map.invalidateSize(), 60); });
+      tiles.addTo(map);
+      P.forEach(p=>{
+        L.marker([p.lat,p.lng], {title:p.name, icon:L.divIcon({className:"",
+          html:pinHTML(p.n), iconSize:[30,30], iconAnchor:[15,30], popupAnchor:[0,-28]})})
+         .addTo(map).bindPopup(popHTML(p));
+      });
+      map.fitBounds(P.map(p=>[p.lat,p.lng]), {padding:[45,45]});
+      setTimeout(giveUp, 7000);
     });
-    map.fitBounds(P.map(p=>[p.lat, p.lng]), {padding:[45,45]});
-    // if no tile ever arrives, drop back to the coordinate map
-    setTimeout(()=>{ if(!ok){ el.hidden = true; svg.hidden = false; } }, 7000);
-  };
-  document.head.appendChild(sc);
+  }
+
+  if(MAP_KEY.kakao)       kakaoMap();
+  else if(MAP_KEY.naver)  naverMap();
+  else if(MAP_KEY.google) googleMap();
+  else                    osmMap();
 })();
 
 </script>
