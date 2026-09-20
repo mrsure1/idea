@@ -624,9 +624,9 @@ document.getElementById("mapsvg").innerHTML =
 (function(){
   const services = [
     u => `https://api.microlink.io/?url=${u}&embed=image.url`,
-    u => `https://api.microlink.io/?url=${u}&screenshot=true&meta=false&embed=screenshot.url`,
     u => `https://image.thum.io/get/width/1000/crop/563/noanimate/${decodeURIComponent(u)}`
   ];
+  const SOURCE_TIMEOUT = 6000;   // 한 곳이 6초 넘게 안 주면 다음으로 넘어간다
   function load(box){
     const img = box.querySelector("img");
     if(!img) return;
@@ -636,14 +636,18 @@ document.getElementById("mapsvg").innerHTML =
     const local = base ? [base+".jpg", base+".webp", base+".png"] : [];
     const sources = localOnly ? local : local.concat(services.map(f=>f(enc)));
     let i = 0, tries = 0; const localCount = local.length;
-    function fail(){ box.classList.add("failed"); img.remove(); }
+    function fail(){ clearTimeout(timer); box.classList.add("failed"); img.remove(); }
+    let timer = null;
     function next(){
+      clearTimeout(timer);
       if(i >= sources.length) return fail();
       tries = 0;
       img.src = sources[i++];
+      timer = setTimeout(() => { if(!img.classList.contains("ok")) next(); }, SOURCE_TIMEOUT);
     }
     img.addEventListener("load", function(){
       const w = img.naturalWidth, h = img.naturalHeight;
+      clearTimeout(timer);
       if(i <= localCount){ img.classList.add("ok"); box.classList.add("loaded"); return; }
       const placeholder = w < 120 || (w === 400 && h === 300) || (w === 1 && h === 1);
       if(placeholder){
@@ -700,7 +704,13 @@ const MAP_KEY = {
 
   function script(src, onload){
     const t = document.createElement("script");
-    t.src = src; t.async = true; t.onload = onload; t.onerror = giveUp;
+    t.src = src; t.async = true; t.onload = onload;
+    t.onerror = function(){
+      console.error("[지도] 스크립트를 받지 못했습니다:", src.split("?")[0],
+        "\n→ 카카오맵이라면 JavaScript 키가 틀렸거나, 카카오 개발자 콘솔에 "+
+        "사이트 도메인(https://mrsure1.github.io)이 등록되지 않아 요청이 거부된 것입니다.");
+      giveUp();
+    };
     document.head.appendChild(t);
   }
 
