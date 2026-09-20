@@ -132,13 +132,23 @@ section{padding-block:46px}
 .plabel{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 @media (max-width:430px){.pgrid{grid-template-columns:1fr}}
-.pslot{display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:76px;
-  padding:11px 13px;border:1px dashed var(--line-2);border-radius:3px;background:var(--surface-2);
-  text-decoration:none;color:var(--ink-2);font-size:12.5px;transition:border-color .15s,color .15s}
-.pslot:hover{border-color:var(--accent);border-style:solid;color:var(--accent)}
+.pslot{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:3px;
+  background:var(--surface-2);overflow:hidden;text-decoration:none;color:var(--ink-2);
+  transition:border-color .15s,color .15s}
+.pslot:hover{border-color:var(--accent);color:var(--accent)}
+.pshot{position:relative;aspect-ratio:4/3;max-width:100%;background:var(--surface-2);overflow:hidden}
+.pshot img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .35s}
+.pshot img.ok{opacity:1}
+.pshot::after{content:"사진 불러오는 중";position:absolute;inset:0;display:grid;place-items:center;
+  font-size:11px;color:var(--muted);letter-spacing:.04em}
+.pshot.loaded::after,.pshot.failed::after{content:none}
+.pshot.failed{aspect-ratio:auto;min-height:0}
+.pmeta{padding:9px 12px;display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--line)}
+.pshot.failed + .pmeta{border-top:0;min-height:74px;justify-content:center}
 .pslot .src{font-weight:700;font-size:12.5px}
-.pslot .cap{font-size:11px;color:var(--muted)}
+.pslot .cap{font-size:11px;color:var(--muted);line-height:1.5}
 .pslot:hover .cap{color:var(--accent)}
+.pnote{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.6}
 
 .links{display:flex;flex-wrap:wrap;gap:8px;padding-top:14px;border-top:1px solid var(--line)}
 .lnk{font-size:12.5px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);
@@ -335,7 +345,7 @@ body{font-size:11.5px;background:#fff}
   <div class="shead"><h2>조사 방법과 한계</h2></div>
   <div class="callscript">
     <p style="margin:0 0 14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">확인한 것.</b> 각 숙소의 주소 · 연락처 · 객실 구성은 웹 검색으로 확인했고, 이 페이지에 실린 <b>모든 링크는 도메인 생존(DNS) 확인을 거쳤습니다</b>. 끊어진 링크는 넣지 않았습니다 — 실제로 한 곳(센트럴 광주 호텔&amp;레지던스)은 도메인이 응답하지 않아 목록에서 뺐습니다.</p>
-    <p style="margin:0 0 14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">사진을 직접 넣지 못한 이유.</b> 이 작업 환경의 네트워크 정책이 예약 사이트 · 이미지 서버 접근을 차단해, 실제 사진 파일을 내려받아 삽입할 수 없었습니다. 대신 각 숙소마다 <b>사진이 올라가 있는 실제 페이지 3곳</b>으로 바로 가는 링크를 넣었습니다. 사진 파일을 주시면 그대로 끼워 넣어 다시 만들어 드릴 수 있습니다.</p>
+    <p style="margin:0 0 14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">사진.</b> 각 숙소가 직접 운영하는 페이지의 <b>대표 이미지를 여러분 브라우저가 실시간으로 불러옵니다</b> — 제가 사진을 복사해 저장한 것이 아니라, 숙소 페이지를 그때그때 읽어오는 방식입니다. 따라서 숙소가 사진을 바꾸면 이 페이지도 따라 바뀝니다. 일부 예약 사이트는 외부 접근을 막아 이미지가 안 뜰 수 있고, 그럴 때는 이름표만 남습니다 — 눌러서 원본 사진첩으로 가세요.</p>
     <p style="margin:0 0 14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">가격.</b> 9월 28일자 실시간 견적이 아니라 공개 요금 범위입니다. 실시간 조회 링크를 카드마다 넣어두었으니 날짜를 넣고 바로 확인하세요.</p>
     <p style="margin:0;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">지도 좌표.</b> 공개 주소를 기준으로 한 근사 위치(블록 단위)입니다. 정확한 지점은 각 카드의 카카오맵 링크에서 확인하세요.</p>
   </div>
@@ -503,7 +513,7 @@ function card(p){
   const t = p.tags.map(([x,c])=>`<span class="tag ${c}">${x}</span>`).join("");
   const f = [["유형",p.type],["위치",p.loc],["침실 구조",p.bed],["취사",p.cook],["1박 참고가",p.price],["장기 요금",p.long]]
     .map(([k,v])=>`<div class="fact"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
-  const ph = p.ph.map(([s,c,u])=>`<a class="pslot" href="${u}" target="_blank" rel="noopener"><span class="src">${s} ↗</span><span class="cap">${c}</span></a>`).join("");
+  const ph = p.ph.map(([s,c,u])=>`<a class="pslot" href="${u}" target="_blank" rel="noopener"><span class="pshot" data-page="${encodeURIComponent(u)}"><img alt="${p.name} — ${c}" loading="lazy"></span><span class="pmeta"><span class="src">${s} ↗</span><span class="cap">${c}</span></span></a>`).join("");
   const lk = p.lk.map(([s,u,pri])=>`<a class="lnk ${pri?"primary":""} ${u.startsWith("tel:")?"tel":""}" href="${u}" ${u.startsWith("tel:")?"":'target="_blank" rel="noopener"'}>${s}</a>`).join("")
     + `<a class="lnk" href="${kk(p.kk)}" target="_blank" rel="noopener">지도에서 보기 ↗</a>`;
   return `<article class="card ${p.pick?"pick":""}">
@@ -516,7 +526,7 @@ function card(p){
       <div class="facts">${f}</div>
       <p class="why">${p.why}</p>
       <div class="elder"><span class="k">93세 관점</span><span>${p.elder}</span></div>
-      <div class="photos"><div class="plabel">실제 사진 — 아래 3곳에서 확인</div><div class="pgrid">${ph}</div></div>
+      <div class="photos"><div class="plabel">실제 사진</div><div class="pgrid">${ph}</div><p class="pnote">각 숙소가 직접 올린 페이지에서 대표 이미지를 실시간으로 불러옵니다. 눌러서 전체 사진첩으로 이동하세요.</p></div>
       <div class="links">${lk}</div>
     </div>
   </article>`;
@@ -622,4 +632,35 @@ const gjRefs = REF.filter(r=>r[1]<35.25), dyRefs = REF.filter(r=>r[1]>=35.25);
 document.getElementById("mapsvg").innerHTML =
   `<div class="mappanel">${drawMap(P.filter(p=>p.r==="dy"), dyRefs, "담양군 · 장성군", 900, 430)}</div>`+
   `<div class="mappanel">${drawMap(P.filter(p=>p.r==="gj"), gjRefs, "광주광역시", 900, 430)}</div>`;
+/* ---- 사진 로더: 숙소 페이지의 대표 이미지를 실시간으로 가져온다 ---- */
+(function(){
+  const chain = enc => [
+    `https://api.microlink.io/?url=${enc}&embed=image.url`,
+    `https://api.microlink.io/?url=${enc}&embed=logo.url`,
+    `https://s0.wp.com/mshots/v1/${enc}?w=800&h=600`
+  ];
+  function load(box){
+    const img = box.querySelector("img");
+    const urls = chain(box.dataset.page);
+    let i = 0, retried = false;
+    const next = () => {
+      if(i >= urls.length){ box.classList.add("failed"); img.remove(); return; }
+      img.src = urls[i++];
+    };
+    img.addEventListener("load", () => {
+      // mshots serves a grey placeholder while it renders — retry once
+      if(img.naturalWidth < 60 && !retried){ retried = true; setTimeout(()=>{ img.src = urls[i-1] + "&r=" + Date.now(); }, 2500); return; }
+      img.classList.add("ok"); box.classList.add("loaded");
+    });
+    img.addEventListener("error", next);
+    next();
+  }
+  const boxes = document.querySelectorAll(".pshot");
+  if(!("IntersectionObserver" in window)){ boxes.forEach(load); return; }
+  const io = new IntersectionObserver((es,o)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ o.unobserve(e.target); load(e.target); } });
+  }, {rootMargin:"600px"});
+  boxes.forEach(b=>io.observe(b));
+})();
+
 </script>
