@@ -16,7 +16,6 @@
 | 봄날의 담양 | `bomnal-1.jpg` … |
 | 그라스 풀빌라 리조트 | `grasse-1.jpg` … |
 | 담양메타펜션 | `metapension-1.jpg` … |
-| 더힐링나인 | `healing9-1.jpg` … |
 | 담양리조트 | `damyangresort-1.jpg` … |
 
 `.jpg` 대신 `.webp`, `.png` 도 됩니다. 일부만 넣어도 되고, 없는 자리는 자동으로 다른 방법으로 채웁니다.

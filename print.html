@@ -271,7 +271,7 @@ body{font-size:11.5px;background:#fff}
   <div class="wrap">
     <div class="eyebrow">2026.09.28 이후 · 1주~1개월</div>
     <h1>광주, 담양 근처 숙소</h1>
-    <p class="dek"><b>성인 2~3명</b>이 방을 따로 쓰며 한 달까지 지낼 수 있는 곳 12군데입니다. 광주 5곳, 담양·장성 7곳.</p>
+    <p class="dek"><b>성인 2~3명</b>이 방을 따로 쓰며 한 달까지 지낼 수 있는 곳 11군데입니다. 광주 5곳, 담양·장성 6곳.</p>
     <div class="brief">
       <span>성인 2~3명 · 침실 2~3개</span>
       <span>9월 28일 이후</span>
@@ -283,7 +283,7 @@ body{font-size:11.5px;background:#fff}
 <nav class="jump"><div class="wrap">
   <a href="#verdict">한눈에</a>
   <a href="#gwangju">광주 5곳</a>
-  <a href="#damyang">담양·장성 7곳</a>
+  <a href="#damyang">담양·장성 6곳</a>
   <a href="#table">비교표</a>
   <a href="#map">위치도</a>
 </div></nav>
@@ -324,7 +324,7 @@ body{font-size:11.5px;background:#fff}
 </div></section>
 
 <section id="damyang"><div class="wrap">
-  <div class="shead"><h2>담양 · 장성</h2><span class="count">7곳 · 독채 · 방 3개 쉬움</span></div>
+  <div class="shead"><h2>담양 · 장성</h2><span class="count">6곳 · 독채 · 방 3개 쉬움</span></div>
   <p class="sintro">방을 따로 쓰기에는 담양 독채가 훨씬 낫습니다. 10~11월은 비수기라 <b>길게 묵을수록 값을 많이 깎아줍니다</b> — 전화로 꼭 물어보세요.</p>
   <div class="cards" id="cards-dy"></div>
 </div></section>
@@ -347,11 +347,11 @@ body{font-size:11.5px;background:#fff}
 </div></section>
 
 <section id="map"><div class="wrap">
-  <div class="shead"><h2>위치도</h2><span class="count">빨간 핀 12개</span></div>
+  <div class="shead"><h2>위치도</h2><span class="count">빨간 핀 11개</span></div>
   <p class="sintro">위가 <b>담양·장성</b>, 아래가 <b>광주</b>입니다. 두 지역은 차로 40분쯤 떨어져 있습니다. 카드의 “지도에서 보기”를 누르면 실제 지도로 연결됩니다.</p>
   <div class="mapbox"><div id="leafmap" hidden></div><div id="mapsvg"></div>
     <div class="maplegend">
-      <span class="li"><span class="pin"></span>추천 숙소 12곳 — 핀을 누르면 이름과 링크가 나옵니다</span>
+      <span class="li"><span class="pin"></span>추천 숙소 11곳 — 핀을 누르면 이름과 링크가 나옵니다</span>
       <span class="li"><span class="ref"></span>기준점 (역 · 공항 · 종합병원 · 명소)</span>
     </div>
   </div>
@@ -475,26 +475,15 @@ const P = [
   lk:[["공식 홈페이지","http://www.metapension.com/",1],["빈 날짜 확인","http://www.metapension.com/pension_resv/resv_form1.htm",0],["전화 061-381-2002","tel:061-381-2002",0]],
   kk:"담양메타펜션",lat:35.3298,lng:126.9925},
 
- {n:11,r:"dy",id:"healing9",name:"더힐링나인",sub:"장성군 서삼면 · 편백숲과 모암호 사이",pick:false,
-  type:"전 객실 풀빌라",loc:"전남 장성군 서삼면",bed:"2룸+ · 타입별 상이",cook:"가능 · 조식 무료",
-  price:"약 30~50만원대",long:"호스트 협의",stars:4,
-  tags:[["조식 무료","good"],["편백숲 · 히노끼탕","good"],["담양 아닌 장성","risk"]],
-  why:"장성이지만 담양 서쪽과 붙어 있습니다. <b>조식이 무료로 나와</b> 한 달 살기의 가장 큰 부담인 아침 준비가 사라집니다. 편백나무 침대에 히노끼탕이 있습니다.",
-  elder:"편백 숲 평지 산책로가 바로 옆이고, 히노끼탕으로 매일 온욕을 하실 수 있어 잠자리에 도움이 됩니다. 개별 수영장 바닥 미끄럼만 대비하세요.",
-  addr:"전라남도 장성군 서삼면 모암리 593-3", tel:"061-393-8799",
-  ph:[["공식 홈페이지","더힐링나인","http://thehealing9.co.kr/"]],
-  lk:[["공식 홈페이지","http://thehealing9.co.kr/",1],["전화 061-393-8799","tel:061-393-8799",0]],
-  kk:"더힐링나인 장성",lat:35.3330,lng:126.7480},
-
- {n:12,r:"dy",id:"damyangresort",name:"담양리조트 (온천)",sub:"담양군 금성면 · 36실",pick:false,
+  {n:11,r:"dy",id:"damyangresort",name:"담양리조트 (온천)",sub:"담양군 금성면 · 36실",pick:false,
   type:"온천 리조트",loc:"전남 담양군 금성면",bed:"36실 · 침대형 / 온돌형",cook:"<b>전 객실 취사 금지</b>",
   price:"약 12~25만원",long:"1주 이내 단기에만 권함",stars:3,
   tags:[["온천 · 야외수영장","good"],["온돌방 선택 가능","good"],["취사 금지","risk"]],
   why:"온천과 야외수영장이 훌륭하고 메타세쿼이아길까지 차로 15분입니다. 다만 <b>모든 객실에서 취사가 금지</b>라 한 달은 세 끼를 전부 사 드셔야 합니다. <b>일주일 이내 단기</b>라면 좋은 선택입니다.",
   elder:"매일 온천을 하실 수 있고 온돌방도 고를 수 있어 어르신께 잘 맞습니다. 다만 밥을 해 드실 수 없다는 점만 감안하세요.",
   addr:"전라남도 담양군 금성면 금성산성길 202", tel:"",
-  ph:[["공식 홈페이지","담양리조트","http://damyangresort.com/"]],
-  lk:[["공식 홈페이지","http://damyangresort.com/",1],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/9952",0]],
+  ph:[["여기어때","담양리조트","https://www.yeogi.com/domestic-accommodations/9952"]],
+  lk:[["여기어때 예약","https://www.yeogi.com/domestic-accommodations/9952",1],["투어비스 요금","https://tourvis.com/hotel/hotels/88147",0]],
   kk:"담양리조트",lat:35.3460,lng:127.0250}
 ];
 

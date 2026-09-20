@@ -18,7 +18,6 @@ const TARGETS = {
   bomnal:        ["https://www.airbnb.co.kr/rooms/1452614463682962740"],
   grasse:        ["http://grasse.co.kr/"],
   metapension:   ["http://www.metapension.com/", "http://www.metapension.com/pension_resv/resv_form1.htm"],
-  healing9:      ["http://www.thehealing9.co.kr/m/camp.html", "http://thehealing9.co.kr/"],
   damyangresort: ["http://damyangresort.com/"]
 };
 
