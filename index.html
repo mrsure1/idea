@@ -650,7 +650,7 @@ document.getElementById("mapsvg").innerHTML =
    키를 넣는 곳은 여기 한 줄뿐입니다. 넣고 저장하면 바로 바뀝니다.
    ========================================================================== */
 const MAP_KEY = {
-  kakao:  "",   // 카카오 JavaScript 키  (developers.kakao.com)
+  kakao:  "bb0299cc9e28169c20dd3e4bdd13d05d",   // 카카오 JavaScript 키
   naver:  "",   // 네이버 지도 Key ID    (console.ncloud.com)
   google: ""    // 구글 Maps API 키      (console.cloud.google.com)
 };
@@ -665,9 +665,19 @@ const MAP_KEY = {
     `<div class="lpop"><b>${p.name}</b><span>${p.loc} · ${p.price}</span>`+
     `<a href="https://map.kakao.com/?q=${encodeURIComponent(p.kk)}" target="_blank" rel="noopener">카카오맵에서 열기 ↗</a></div>`;
 
-  let settled = false;
+  let settled = false, triedOsm = false;
   function show(){ if(settled) return; settled = true; el.hidden = false; svg.hidden = true; }
-  function giveUp(){ if(settled) return; el.hidden = true; svg.hidden = false; }
+  function giveUp(){
+    if(settled) return;
+    if(!triedOsm){                       // 키가 막혀 있으면 조용히 OSM 으로 대체
+      triedOsm = true;
+      console.warn("[지도] 카카오/네이버/구글 지도를 불러오지 못해 OpenStreetMap 으로 표시합니다. "+
+                   "카카오맵이라면 콘솔에서 사이트 도메인(https://mrsure1.github.io) 등록과 "+
+                   "카카오맵 제품 활성화를 확인하세요.");
+      el.innerHTML = ""; osmMap(); return;
+    }
+    el.hidden = true; svg.hidden = false;
+  }
 
   function script(src, onload){
     const t = document.createElement("script");
@@ -679,7 +689,9 @@ const MAP_KEY = {
   function kakaoMap(){
     script(`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${MAP_KEY.kakao}&autoload=false`, function(){
       if(!window.kakao || !kakao.maps) return giveUp();
+      const guard = setTimeout(giveUp, 6000);
       kakao.maps.load(function(){
+        clearTimeout(guard);
         el.hidden = false;
         const map = new kakao.maps.Map(el, {center:new kakao.maps.LatLng(mid[0],mid[1]), level:11});
         const bounds = new kakao.maps.LatLngBounds();
