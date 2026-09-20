@@ -399,7 +399,7 @@ const P = [
   lk:[["IHG 공식 예약","https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail",1],["요금 보기 · Booking.com","https://www.booking.com/hotel/kr/holiday-inn-gwangju.html",0]],
   kk:"홀리데이인 광주",lat:35.1470,lng:126.8430},
 
- {n:4,r:"gj",id:"mudeungpark",name:"호텔 무등파크",sub:"광주 동구 지산동 · 무등산 자락 · 110실",pick:false,
+ {n:4,r:"gj",id:"mudeungpark",local:1,name:"호텔 무등파크",sub:"광주 동구 지산동 · 무등산 자락 · 110실",pick:false,
   type:"호텔",loc:"광주 동구 지산동",bed:"양실 75실 · 한실 35실 · 스위트",cook:"불가",
   price:"날짜별 확인",long:"문의",stars:4,
   tags:[["온천 사우나","good"],["한실 선택 가능","good"],["도심에서 조금 외곽","risk"]],
@@ -421,7 +421,7 @@ const P = [
   lk:[["공식 홈페이지","https://acchotel.kr/",1],["전화 062-234-8000","tel:062-234-8000",0]],
   kk:"ACC디자인호텔",lat:35.1479,lng:126.9159},
 
- {n:6,r:"dy",id:"forest",name:"담양숲속가족펜션",sub:"담양군 용면 쌍태리 · 독채 50평",pick:true,
+ {n:6,r:"dy",id:"forest",local:3,name:"담양숲속가족펜션",sub:"담양군 용면 쌍태리 · 독채 50평",pick:true,
   type:"대형 독채 펜션",loc:"전남 담양군 용면",bed:"방 4개 · 욕실 2개 · 넓은 거실·주방",cook:"가능 — 주방 완비",
   price:"날짜별 확인",long:"장기 협의 가능",stars:5,
   tags:[["1층 생활 가능","good"],["방 4개","good"],["병원까지 40분","risk"]],
@@ -626,36 +626,54 @@ document.getElementById("mapsvg").innerHTML =
     u => `https://api.microlink.io/?url=${u}&embed=image.url`,
     u => `https://image.thum.io/get/width/1000/crop/563/noanimate/${decodeURIComponent(u)}`
   ];
-  const SOURCE_TIMEOUT = 6000;   // 한 곳이 6초 넘게 안 주면 다음으로 넘어간다
+  const SOURCE_TIMEOUT = 6000;    // 한 곳이 6초 넘게 안 주면 다음으로
+  const TOTAL_DEADLINE = 15000;   // 무슨 일이 있어도 15초 뒤엔 포기한다
   function load(box){
     const img = box.querySelector("img");
     if(!img) return;
     const enc = box.dataset.page, base = box.dataset.local || "";
-    // 저장소에 직접 넣은 사진이 있으면 그걸 먼저 쓴다
     const localOnly = box.dataset.localonly === "1";
     const local = base ? [base+".jpg", base+".webp", base+".png"] : [];
     const sources = localOnly ? local : local.concat(services.map(f=>f(enc)));
-    let i = 0, tries = 0; const localCount = local.length;
-    function fail(){ clearTimeout(timer); box.classList.add("failed"); img.remove(); }
-    let timer = null;
+    const localCount = local.length;
+    let i = 0, tries = 0, timer = null, done = false;
+
+    function fail(){
+      if(done) return;
+      done = true; clearTimeout(timer); clearTimeout(deadline);
+      box.classList.add("failed"); img.remove();
+    }
+    function succeed(){
+      done = true; clearTimeout(timer); clearTimeout(deadline);
+      img.classList.add("ok"); box.classList.add("loaded");
+    }
+    const deadline = setTimeout(fail, TOTAL_DEADLINE);
+
+    function arm(){ clearTimeout(timer); timer = setTimeout(() => { if(!done) next(); }, SOURCE_TIMEOUT); }
     function next(){
+      if(done) return;
       clearTimeout(timer);
       if(i >= sources.length) return fail();
       tries = 0;
       img.src = sources[i++];
-      timer = setTimeout(() => { if(!img.classList.contains("ok")) next(); }, SOURCE_TIMEOUT);
+      arm();
     }
+
     img.addEventListener("load", function(){
-      const w = img.naturalWidth, h = img.naturalHeight;
+      if(done) return;
       clearTimeout(timer);
-      if(i <= localCount){ img.classList.add("ok"); box.classList.add("loaded"); return; }
+      if(i <= localCount) return succeed();
+      const w = img.naturalWidth, h = img.naturalHeight;
       const placeholder = w < 120 || (w === 400 && h === 300) || (w === 1 && h === 1);
       if(placeholder){
-        if(tries < 2){ tries++; setTimeout(()=>{ img.src = img.src.split("#")[0] + "#r" + Date.now(); }, 3000); }
-        else next();
+        if(tries < 2){
+          tries++;
+          arm();                                   // 재시도에도 반드시 타이머를 건다
+          setTimeout(() => { if(!done) img.src = img.src.split("#")[0] + "#r" + Date.now(); }, 2500);
+        } else next();
         return;
       }
-      img.classList.add("ok"); box.classList.add("loaded");
+      succeed();
     });
     img.addEventListener("error", next);
     next();
