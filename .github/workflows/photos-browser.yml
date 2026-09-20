@@ -1,0 +1,28 @@
+name: Fetch photos (browser)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm init -y && npm i playwright@1.49.1
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/fetch-photos-browser.mjs
+      - name: Commit for review
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f package.json package-lock.json
+          rm -rf node_modules
+          git add images-review
+          git diff --staged --quiet || git commit -m "검수용 사진 수집 (브라우저)"
+          git push

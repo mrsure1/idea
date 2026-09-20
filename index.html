@@ -609,36 +609,54 @@ document.getElementById("mapsvg").innerHTML =
     u => `https://api.microlink.io/?url=${u}&embed=image.url`,
     u => `https://image.thum.io/get/width/1000/crop/563/noanimate/${decodeURIComponent(u)}`
   ];
-  const SOURCE_TIMEOUT = 6000;   // 한 곳이 6초 넘게 안 주면 다음으로 넘어간다
+  const SOURCE_TIMEOUT = 6000;    // 한 곳이 6초 넘게 안 주면 다음으로
+  const TOTAL_DEADLINE = 15000;   // 무슨 일이 있어도 15초 뒤엔 포기한다
   function load(box){
     const img = box.querySelector("img");
     if(!img) return;
     const enc = box.dataset.page, base = box.dataset.local || "";
-    // 저장소에 직접 넣은 사진이 있으면 그걸 먼저 쓴다
     const localOnly = box.dataset.localonly === "1";
     const local = base ? [base+".jpg", base+".webp", base+".png"] : [];
     const sources = localOnly ? local : local.concat(services.map(f=>f(enc)));
-    let i = 0, tries = 0; const localCount = local.length;
-    function fail(){ clearTimeout(timer); box.classList.add("failed"); img.remove(); }
-    let timer = null;
+    const localCount = local.length;
+    let i = 0, tries = 0, timer = null, done = false;
+
+    function fail(){
+      if(done) return;
+      done = true; clearTimeout(timer); clearTimeout(deadline);
+      box.classList.add("failed"); img.remove();
+    }
+    function succeed(){
+      done = true; clearTimeout(timer); clearTimeout(deadline);
+      img.classList.add("ok"); box.classList.add("loaded");
+    }
+    const deadline = setTimeout(fail, TOTAL_DEADLINE);
+
+    function arm(){ clearTimeout(timer); timer = setTimeout(() => { if(!done) next(); }, SOURCE_TIMEOUT); }
     function next(){
+      if(done) return;
       clearTimeout(timer);
       if(i >= sources.length) return fail();
       tries = 0;
       img.src = sources[i++];
-      timer = setTimeout(() => { if(!img.classList.contains("ok")) next(); }, SOURCE_TIMEOUT);
+      arm();
     }
+
     img.addEventListener("load", function(){
-      const w = img.naturalWidth, h = img.naturalHeight;
+      if(done) return;
       clearTimeout(timer);
-      if(i <= localCount){ img.classList.add("ok"); box.classList.add("loaded"); return; }
+      if(i <= localCount) return succeed();
+      const w = img.naturalWidth, h = img.naturalHeight;
       const placeholder = w < 120 || (w === 400 && h === 300) || (w === 1 && h === 1);
       if(placeholder){
-        if(tries < 2){ tries++; setTimeout(()=>{ img.src = img.src.split("#")[0] + "#r" + Date.now(); }, 3000); }
-        else next();
+        if(tries < 2){
+          tries++;
+          arm();                                   // 재시도에도 반드시 타이머를 건다
+          setTimeout(() => { if(!done) img.src = img.src.split("#")[0] + "#r" + Date.now(); }, 2500);
+        } else next();
         return;
       }
-      img.classList.add("ok"); box.classList.add("loaded");
+      succeed();
     });
     img.addEventListener("error", next);
     next();
