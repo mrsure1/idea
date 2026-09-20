@@ -1,4 +1,5 @@
 <title>광주, 담양 근처 숙소</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23C42B1C' d='M8 1a5 5 0 0 0-5 5c0 3.5 5 9 5 9s5-5.5 5-9a5 5 0 0 0-5-5z'/%3E%3Ccircle cx='8' cy='6' r='1.9' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
@@ -482,7 +483,8 @@ function card(p){
   const link = p.ph[0], slots = Math.max(p.local || 0, 1);
   const ph = Array.from({length: slots}, (_, k) =>
     `<a class="pslot" href="${link[2]}" target="_blank" rel="noopener">`+
-    `<span class="pshot" data-page="${encodeURIComponent(link[2])}" data-local="images/${p.id}-${k+1}"`+
+    `<span class="pshot" data-page="${encodeURIComponent(link[2])}"`+
+    `${(p.local||0) > k ? ` data-local="images/${p.id}-${k+1}"` : ""}`+
     `${k > 0 ? ' data-localonly="1"' : ''}><img alt="${p.name} 사진 ${k+1}" loading="lazy"></span>`+
     `<span class="pmeta"><span class="src">${link[0]} ↗</span><span class="cap">${link[1]}</span></span></a>`).join("");
   const lk = p.lk.map(([s,u,pri])=>`<a class="lnk ${pri?"primary":""} ${u.startsWith("tel:")?"tel":""}" href="${u}" ${u.startsWith("tel:")?"":'target="_blank" rel="noopener"'}>${s}</a>`).join("")
@@ -611,10 +613,10 @@ document.getElementById("mapsvg").innerHTML =
   function load(box){
     const img = box.querySelector("img");
     if(!img) return;
-    const enc = box.dataset.page, base = box.dataset.local;
+    const enc = box.dataset.page, base = box.dataset.local || "";
     // 저장소에 직접 넣은 사진이 있으면 그걸 먼저 쓴다
     const localOnly = box.dataset.localonly === "1";
-    const local = [base+".jpg", base+".webp", base+".png"];
+    const local = base ? [base+".jpg", base+".webp", base+".png"] : [];
     const sources = localOnly ? local : local.concat(services.map(f=>f(enc)));
     let i = 0, tries = 0; const localCount = local.length;
     function fail(){ box.classList.add("failed"); img.remove(); }
@@ -688,8 +690,16 @@ const MAP_KEY = {
   // ---------- 카카오맵 ----------
   function kakaoMap(){
     script(`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${MAP_KEY.kakao}&autoload=false`, function(){
-      if(!window.kakao || !kakao.maps) return giveUp();
-      const guard = setTimeout(giveUp, 6000);
+      if(!window.kakao || !kakao.maps){
+        console.error("[카카오맵] SDK 를 불러오지 못했습니다. JavaScript 키가 맞는지 확인하세요.");
+        return giveUp();
+      }
+      const guard = setTimeout(function(){
+        console.error("[카카오맵] SDK 는 받았지만 지도 데이터를 받지 못했습니다. "+
+          "대개 (1) 제품 설정 → 카카오맵 활성화가 꺼져 있거나 "+
+          "(2) 사이트 도메인에 https://mrsure1.github.io 가 등록되지 않은 경우입니다.");
+        giveUp();
+      }, 9000);
       kakao.maps.load(function(){
         clearTimeout(guard);
         el.hidden = false;
