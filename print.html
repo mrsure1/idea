@@ -364,7 +364,7 @@ body{font-size:11.5px;background:#fff}
 
 <script>
 const P = [
- {n:1,r:"gj",name:"유탑 부티크 호텔 & 레지던스",sub:"광주 서구 상무지구 · 488실",pick:true,
+ {n:1,r:"gj",id:"utop",name:"유탑 부티크 호텔 & 레지던스",sub:"광주 서구 상무지구 · 488실",pick:true,
   type:"레지던스 + 호텔 (4성급)",loc:"광주 서구 상무지구",bed:"레지던스형 59㎡ 등 · 방 3개는 2객실",cook:"가능 — 싱크대 · 대형냉장고 · 세탁기",
   price:"약 10~20만원대",long:"장기 투숙 상품 있음 — 문의",stars:5,
   tags:[["주방·세탁기","good"],["장기 투숙 받음","good"],["도심 생활권","good"]],
@@ -375,7 +375,7 @@ const P = [
   lk:[["공식 홈페이지","https://www.utopboutique.com/",1],["요금 보기 · 아고다","https://www.agoda.com/ko-kr/utop-butique-hotel-and-residence/hotel/gwangju-metropolitan-city-kr.html",0]],
   kk:"유탑부티크호텔",lat:35.1512,lng:126.8490},
 
- {n:2,r:"gj",name:"브리브 광주 바이 롯데호텔",sub:"광주 서구 상무지구 · 롯데호텔 운영",pick:true,
+ {n:2,r:"gj",id:"breev",name:"브리브 광주 바이 롯데호텔",sub:"광주 서구 상무지구 · 롯데호텔 운영",pick:true,
   type:"호텔 (4성급)",loc:"광주 서구 상무지구",bed:"주니어 스위트 · 패밀리 디럭스 등",cook:"불가 — 외식 · 배달",
   price:"약 13~18만원~",long:"문의",stars:5,
   tags:[["휠체어 정보 공개","good"],["롯데호텔 운영","good"],["취사 불가","risk"]],
@@ -386,7 +386,7 @@ const P = [
   lk:[["롯데호텔 공식 예약","https://www.lottehotel.com/gwangju-breev/ko",1],["휠체어 · 무장애 정보","https://access.visitkorea.or.kr/acm/detail.do?cotId=27417134-e13a-4094-804e-875ed9e70bd1",0]],
   kk:"브리브 광주 바이 롯데호텔",lat:35.1520,lng:126.8483},
 
- {n:3,r:"gj",name:"홀리데이 인 광주",sub:"광주 서구 · IHG 체인",pick:false,
+ {n:3,r:"gj",id:"holidayinn",name:"홀리데이 인 광주",sub:"광주 서구 · IHG 체인",pick:false,
   type:"호텔 (4성급)",loc:"광주 서구",bed:"스위트 · 커넥팅룸 가능",cook:"불가",
   price:"약 15~30만원대",long:"문의",stars:4,
   tags:[["실내 수영장","good"],["커넥팅룸","good"],["취사 불가","risk"]],
@@ -397,7 +397,7 @@ const P = [
   lk:[["IHG 공식 예약","https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail",1],["요금 보기 · Booking.com","https://www.booking.com/hotel/kr/holiday-inn-gwangju.html",0]],
   kk:"홀리데이인 광주",lat:35.1470,lng:126.8430},
 
- {n:4,r:"gj",name:"호텔 무등파크",sub:"광주 동구 지산동 · 무등산 자락 · 110실",pick:false,
+ {n:4,r:"gj",id:"mudeungpark",name:"호텔 무등파크",sub:"광주 동구 지산동 · 무등산 자락 · 110실",pick:false,
   type:"호텔",loc:"광주 동구 지산동",bed:"양실 75실 · 한실 35실 · 스위트",cook:"불가",
   price:"날짜별 확인",long:"문의",stars:4,
   tags:[["온천 사우나","good"],["한실 선택 가능","good"],["도심에서 조금 외곽","risk"]],
@@ -408,7 +408,7 @@ const P = [
   lk:[["공식 홈페이지","http://www.hotelmudeungpark.co.kr/",1],["여기어때 예약","https://www.yeogi.com/domestic-accommodations/6937",0]],
   kk:"호텔무등파크",lat:35.1420,lng:126.9440},
 
- {n:5,r:"gj",name:"ACC 디자인 호텔",sub:"광주 동구 금남로 · 국립아시아문화전당 앞",pick:false,
+ {n:5,r:"gj",id:"acc",name:"ACC 디자인 호텔",sub:"광주 동구 금남로 · 국립아시아문화전당 앞",pick:false,
   type:"디자인 호텔 · 76실",loc:"광주 동구 금남로",bed:"대형 객실 · 스위트",cook:"불가 (냉장고 있음)",
   price:"날짜별 확인",long:"문의",stars:4,
   tags:[["전남대병원 가까움","good"],["문화전당 도보","good"],["규모가 작음","risk"]],
@@ -419,7 +419,7 @@ const P = [
   lk:[["공식 홈페이지","https://acchotel.kr/",1],["전화 062-234-8000","tel:062-234-8000",0]],
   kk:"ACC디자인호텔",lat:35.1479,lng:126.9159},
 
- {n:6,r:"dy",name:"담양숲속가족펜션",sub:"담양군 용면 쌍태리 · 독채 50평",pick:true,
+ {n:6,r:"dy",id:"forest",name:"담양숲속가족펜션",sub:"담양군 용면 쌍태리 · 독채 50평",pick:true,
   type:"대형 독채 펜션",loc:"전남 담양군 용면",bed:"방 4개 · 욕실 2개 · 넓은 거실·주방",cook:"가능 — 주방 완비",
   price:"날짜별 확인",long:"장기 협의 가능",stars:5,
   tags:[["1층 생활 가능","good"],["방 4개","good"],["병원까지 40분","risk"]],
@@ -430,7 +430,7 @@ const P = [
   lk:[["공식 홈페이지","https://www.forestindamyang.co.kr/",1],["에어비앤비 예약","https://www.airbnb.com/rooms/22500937",0],["전화 010-7275-1143","tel:010-7275-1143",0]],
   kk:"담양숲속가족펜션",lat:35.3830,lng:127.0300},
 
- {n:7,r:"dy",name:"은혜의 뜨락",sub:"담양 무월마을 · 한옥 독채",pick:false,
+ {n:7,r:"dy",id:"eunhye",name:"은혜의 뜨락",sub:"담양 무월마을 · 한옥 독채",pick:false,
   type:"한옥 독채 스테이",loc:"전남 담양군 무월마을",bed:"한옥 독채 — 방 개수 문의",cook:"가능 (한옥 스테이 기준)",
   price:"날짜별 확인",long:"호스트 협의",stars:4,
   tags:[["한옥 단층","good"],["조용한 마을","good"],["에어비앤비 예약","good"]],
@@ -441,7 +441,7 @@ const P = [
   lk:[["에어비앤비에서 보기","https://www.airbnb.co.kr/rooms/32963781",1]],
   kk:"담양 무월마을",lat:35.2350,lng:126.9950},
 
- {n:8,r:"dy",name:"봄날의 담양",sub:"담양읍 · 죽녹원 · 국수거리 근처 한옥",pick:false,
+ {n:8,r:"dy",id:"bomnal",name:"봄날의 담양",sub:"담양읍 · 죽녹원 · 국수거리 근처 한옥",pick:false,
   type:"한옥 민박",loc:"전남 담양군 담양읍",bed:"방 2개",cook:"가능 · 세탁기 + 건조기",
   price:"날짜별 확인",long:"호스트 협의",stars:4,
   tags:[["세탁기+건조기","good"],["죽녹원 도보권","good"],["방 2개","risk"]],
@@ -452,7 +452,7 @@ const P = [
   lk:[["에어비앤비에서 보기","https://www.airbnb.co.kr/rooms/1452614463682962740",1]],
   kk:"담양 죽녹원",lat:35.3235,lng:126.9880},
 
- {n:9,r:"dy",name:"그라스 풀빌라 리조트",sub:"담양읍 메타프로방스 · 프라이빗 독채",pick:false,
+ {n:9,r:"dy",id:"grasse",name:"그라스 풀빌라 리조트",sub:"담양읍 메타프로방스 · 프라이빗 독채",pick:false,
   type:"독채 풀빌라",loc:"전남 담양군 담양읍",bed:"독채 · 3룸급 문의",cook:"가능",
   price:"약 20~35만원대",long:"호스트 협의",stars:4,
   tags:[["메타프로방스 도보","good"],["읍내 생활 편의","good"],["2층 여부 확인","risk"]],
@@ -463,7 +463,7 @@ const P = [
   lk:[["공식 홈페이지","http://grasse.co.kr/",1],["전화 010-8562-6335","tel:010-8562-6335",0]],
   kk:"담양 그라스 풀빌라 리조트",lat:35.3300,lng:126.9930},
 
- {n:10,r:"dy",name:"담양메타펜션",sub:"담양읍 학동리 · 메타프로방스 단지 내",pick:false,
+ {n:10,r:"dy",id:"metapension",name:"담양메타펜션",sub:"담양읍 학동리 · 메타프로방스 단지 내",pick:false,
   type:"펜션",loc:"전남 담양군 담양읍",bed:"타입별 상이 — 3룸 문의",cook:"가능",
   price:"날짜별 확인",long:"홈페이지 예약 + 문의",stars:4,
   tags:[["빈 날짜 바로 확인","good"],["메타세쿼이아길 인접","good"]],
@@ -474,7 +474,7 @@ const P = [
   lk:[["공식 홈페이지","http://www.metapension.com/",1],["빈 날짜 확인","http://www.metapension.com/pension_resv/resv_form1.htm",0],["전화 061-381-2002","tel:061-381-2002",0]],
   kk:"담양메타펜션",lat:35.3298,lng:126.9925},
 
- {n:11,r:"dy",name:"더힐링나인",sub:"장성군 서삼면 · 편백숲과 모암호 사이",pick:false,
+ {n:11,r:"dy",id:"healing9",name:"더힐링나인",sub:"장성군 서삼면 · 편백숲과 모암호 사이",pick:false,
   type:"전 객실 풀빌라",loc:"전남 장성군 서삼면",bed:"2룸+ · 타입별 상이",cook:"가능 · 조식 무료",
   price:"약 30~50만원대",long:"호스트 협의",stars:4,
   tags:[["조식 무료","good"],["편백숲 · 히노끼탕","good"],["담양 아닌 장성","risk"]],
@@ -485,7 +485,7 @@ const P = [
   lk:[["공식 홈페이지","http://thehealing9.co.kr/",1],["전화 061-393-8799","tel:061-393-8799",0]],
   kk:"더힐링나인 장성",lat:35.3330,lng:126.7480},
 
- {n:12,r:"dy",name:"담양리조트 (온천)",sub:"담양군 금성면 · 36실",pick:false,
+ {n:12,r:"dy",id:"damyangresort",name:"담양리조트 (온천)",sub:"담양군 금성면 · 36실",pick:false,
   type:"온천 리조트",loc:"전남 담양군 금성면",bed:"36실 · 침대형 / 온돌형",cook:"<b>전 객실 취사 금지</b>",
   price:"약 12~25만원",long:"1주 이내 단기에만 권함",stars:3,
   tags:[["온천 · 야외수영장","good"],["온돌방 선택 가능","good"],["취사 금지","risk"]],
@@ -506,7 +506,7 @@ function card(p){
   const t = p.tags.map(([x,c])=>`<span class="tag ${c}">${x}</span>`).join("");
   const f = [["침실",p.bed],["취사",p.cook],["1박 참고가",p.price],["장기 요금",p.long]]
     .map(([k,v])=>`<div class="fact"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
-  const ph = p.ph.map(([s,c,u])=>`<a class="pslot" href="${u}" target="_blank" rel="noopener"><span class="pshot" data-page="${encodeURIComponent(u)}"><img alt="${p.name} — ${c}" loading="lazy"></span><span class="pmeta"><span class="src">${s} ↗</span><span class="cap">${c}</span></span></a>`).join("");
+  const ph = p.ph.map(([s,c,u],k)=>`<a class="pslot" href="${u}" target="_blank" rel="noopener"><span class="pshot" data-page="${encodeURIComponent(u)}" data-local="images/${p.id}-${k+1}"><img alt="${p.name} — ${c}" loading="lazy"></span><span class="pmeta"><span class="src">${s} ↗</span><span class="cap">${c}</span></span></a>`).join("");
   const lk = p.lk.map(([s,u,pri])=>`<a class="lnk ${pri?"primary":""} ${u.startsWith("tel:")?"tel":""}" href="${u}" ${u.startsWith("tel:")?"":'target="_blank" rel="noopener"'}>${s}</a>`).join("")
     + `<a class="lnk" href="${kk(p.kk)}" target="_blank" rel="noopener">지도에서 보기 ↗</a>`;
   return `<article class="card ${p.pick?"pick":""}">
@@ -633,17 +633,19 @@ document.getElementById("mapsvg").innerHTML =
   function load(box){
     const img = box.querySelector("img");
     if(!img) return;
-    const enc = box.dataset.page;
-    let i = 0, tries = 0;
+    const enc = box.dataset.page, base = box.dataset.local;
+    // 저장소에 직접 넣은 사진이 있으면 그걸 먼저 쓴다
+    const sources = [base+".jpg", base+".webp", base+".png"].concat(services.map(f=>f(enc)));
+    let i = 0, tries = 0, localCount = 3;
     function fail(){ box.classList.add("failed"); img.remove(); }
     function next(){
-      if(i >= services.length) return fail();
+      if(i >= sources.length) return fail();
       tries = 0;
-      img.src = services[i++](enc);
+      img.src = sources[i++];
     }
     img.addEventListener("load", function(){
       const w = img.naturalWidth, h = img.naturalHeight;
-      // grey "generating" placeholders these services return while working
+      if(i <= localCount){ img.classList.add("ok"); box.classList.add("loaded"); return; }
       const placeholder = w < 120 || (w === 400 && h === 300) || (w === 1 && h === 1);
       if(placeholder){
         if(tries < 2){ tries++; setTimeout(()=>{ img.src = img.src.split("#")[0] + "#r" + Date.now(); }, 3000); }
