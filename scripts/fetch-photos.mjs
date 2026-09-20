@@ -11,12 +11,12 @@ const TARGETS = {
   breev:         ["https://www.lottehotel.com/gwangju-breev/ko/rooms.html",
                   "https://www.lottehotel.com/gwangju-breev/ko"],
   holidayinn:    ["https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail"],
-  mudeungpark:   ["http://www.hotelmudeungpark.co.kr/"],
+  mudeungpark:   ["https://www.hotelmudeungpark.co.kr/"],
   acc:           ["http://acchotel.kr/sub.php?code=WGXGbW3J", "https://acchotel.kr/"],
   forest:        ["https://www.forestindamyang.co.kr/", "https://forestindamyang.modoo.at/"],
   eunhye:        ["https://www.airbnb.co.kr/rooms/32963781"],
   bomnal:        ["https://www.airbnb.co.kr/rooms/1452614463682962740"],
-  grasse:        ["http://grasse.co.kr/"],
+  grasse:        ["https://grasse.co.kr/"],
   metapension:   ["http://www.metapension.com/", "http://www.metapension.com/pension_resv/resv_form1.htm"],
   damyangresort: ["http://damyangresort.com/"]
 };
