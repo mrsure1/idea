@@ -5,11 +5,17 @@ import { chromium } from "playwright";
 import { writeFile, mkdir } from "node:fs/promises";
 
 const TARGETS = {
-  breev: ["https://www.lottehotel.com/gwangju-breev/ko/rooms.html",
-          "https://www.lottehotel.com/gwangju-breev/ko"],
+  // index.html — 아직 사진이 없는 곳
   holidayinn: ["https://www.ihg.com/holidayinn/hotels/us/en/gwangju/kwjsu/hoteldetail"],
-  forest: ["https://www.forestindamyang.co.kr/", "https://forestindamyang.modoo.at/"],
-  damyangresort: ["http://damyangresort.com/"]
+  damyangresort: ["http://damyangresort.com/"],
+  // nearby.html — 나주·화순·장성
+  duplex: ["http://www.duplexhotel.kr/"],
+  bitgaram: ["https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7da1ee40-baac-4319-ba7f-a44c8505422d"],
+  okspa: ["http://www.okspaland.com/bbs/board.php?bo_table=gallery2",
+          "http://www.okspaland.com/bbs/board.php?bo_table=gallery",
+          "http://www.okspaland.com/"],
+  kumho: ["https://www.kumhoresort.co.kr/"],
+  biche: ["http://bichepension.com/"]
 };
 
 const BAD = /logo|icon|favicon|btn_|button|banner|bullet|arrow|sprite|blank|spacer|watermark|popup|event|notice|kakao|naver|facebook|instagram|youtube/i;
